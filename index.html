@@ -1,0 +1,3938 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAG 2026 - Pré-candidato ao Senado</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icone.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-weight: 300;
+            overflow-y: scroll;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1;
+        }
+
+        /* Menu Styles */
+        .menu {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 16px 32px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 4px 30px rgba(0, 0, 0, 0.15),
+                0 1px 0 rgba(255, 255, 255, 0.03) inset,
+                0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+            
+            background-image: 
+                linear-gradient(to right, 
+                    rgba(255, 255, 255, 0.05) 0%,
+                    rgba(255, 255, 255, 0.02) 50%,
+                    rgba(255, 255, 255, 0.05) 100%),
+                radial-gradient(
+                    circle at 20% 50%,
+                    rgba(173, 216, 230, 0.08) 0%,
+                    transparent 60%
+                ),
+                radial-gradient(
+                    circle at 80% 50%,
+                    rgba(173, 216, 230, 0.06) 0%,
+                    transparent 60%
+                );
+        }
+
+        .menu-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 30px;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-image img {
+            height: 100%;
+            width: auto;
+            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(30, 144, 255, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-image img {
+            filter: brightness(1.2) drop-shadow(0 6px 20px rgba(30, 144, 255, 0.4));
+            transform: scale(1.05);
+        }
+
+        .menu-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        /* Botão de Pause/Play da Música */
+        .music-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .music-button.playing {
+            background: rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.4);
+            color: #1e90ff;
+        }
+
+        .music-button.playing::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(30, 144, 255, 0.3);
+            animation: pulseMusic 2s infinite;
+        }
+
+        @keyframes pulseMusic {
+            0% {
+                width: 60px;
+                height: 60px;
+                opacity: 1;
+            }
+            100% {
+                width: 80px;
+                height: 80px;
+                opacity: 0;
+            }
+        }
+
+        .pulse-button {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 
+                0 8px 25px rgba(30, 144, 255, 0.3),
+                0 4px 15px rgba(30, 144, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            
+            background-image: 
+                linear-gradient(135deg, 
+                    rgba(255, 255, 255, 0.15) 0%,
+                    transparent 30%,
+                    transparent 70%,
+                    rgba(255, 255, 255, 0.15) 100%);
+        }
+
+        .pulse-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 12px 35px rgba(30, 144, 255, 0.4),
+                0 6px 20px rgba(30, 144, 255, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #3498ff, #4a7de8);
+        }
+
+        .pulse-button:active {
+            transform: translateY(0);
+            box-shadow: 
+                0 4px 15px rgba(30, 144, 255, 0.3),
+                0 2px 8px rgba(30, 144, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 
+                    0 8px 25px rgba(30, 144, 255, 0.3),
+                    0 4px 15px rgba(30, 144, 255, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 
+                    0 8px 30px rgba(30, 144, 255, 0.4),
+                    0 4px 20px rgba(30, 144, 255, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            }
+            100% {
+                box-shadow: 
+                    0 8px 25px rgba(30, 144, 255, 0.3),
+                    0 4px 15px rgba(30, 144, 255, 0.2),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            }
+        }
+
+        .pulse-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .pulse-button:hover::before {
+            opacity: 1;
+        }
+
+        .pulse-button {
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        .donation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .donation-overlay.active {
+            opacity: 1;
+            display: flex;
+        }
+
+        .donation-popup {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-radius: 24px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 8px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .donation-overlay.active .donation-popup {
+            transform: translateY(0) scale(1);
+        }
+
+        .donation-popup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+        }
+
+        .popup-content {
+            overflow-y: auto;
+            flex: 1;
+            padding-right: 10px;
+            max-height: calc(85vh - 100px);
+        }
+
+        @media (min-width: 769px) {
+            .popup-content {
+                scrollbar-width: thin;
+                scrollbar-color: rgba(30, 144, 255, 0.5) rgba(255, 255, 255, 0.1);
+            }
+
+            .popup-content::-webkit-scrollbar {
+                width: 8px;
+            }
+
+            .popup-content::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 4px;
+            }
+
+            .popup-content::-webkit-scrollbar-thumb {
+                background: rgba(30, 144, 255, 0.5);
+                border-radius: 4px;
+                transition: background 0.3s ease;
+            }
+
+            .popup-content::-webkit-scrollbar-thumb:hover {
+                background: rgba(30, 144, 255, 0.7);
+            }
+        }
+
+        .popup-header {
+            text-align: center;
+            margin-bottom: 30px;
+            flex-shrink: 0;
+        }
+
+        .popup-header h2 {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .popup-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .qr-code-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+            flex-shrink: 0;
+        }
+
+        .qr-code-placeholder {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .qr-code-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            animation: shine 2s infinite linear;
+        }
+
+        .qr-code-placeholder span {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .qr-instructions {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .pix-key-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            flex-shrink: 0;
+        }
+
+        .pix-key-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .pix-key {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pix-key-value {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            white-space: nowrap;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+
+        .copy-button {
+            background: rgba(30, 144, 255, 0.2);
+            border: 1px solid rgba(30, 144, 255, 0.4);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .copy-button:hover {
+            background: rgba(30, 144, 255, 0.3);
+            border-color: rgba(30, 144, 255, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .copy-button.copied {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: rgba(46, 204, 113, 0.4);
+            color: #2ecc71;
+        }
+
+        .popup-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+            flex-shrink: 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .close-button {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .thank-you-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 8px 30px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            z-index: 2001;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .thank-you-message.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: all;
+        }
+
+        .thank-you-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .thank-you-message h3 {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+
+        .thank-you-message p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .thank-you-close {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .thank-you-close:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .menu-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: particleFloat 20s infinite linear;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-10px) translateX(10px);
+            }
+            50% {
+                transform: translateY(0) translateX(20px);
+            }
+            75% {
+                transform: translateY(10px) translateX(10px);
+            }
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+        }
+
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            margin-top: 72px;
+            overflow: hidden;
+            cursor: none;
+            isolation: isolate;
+        }
+
+        .image-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .front-image {
+            background-image: url('01.png');
+            z-index: 1;
+            filter: brightness(0.9) contrast(1.05);
+            opacity: 1 !important;
+        }
+
+        .back-image {
+            background-image: url('02.png');
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+
+        .water-wave {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.15) 0%, 
+                rgba(255, 255, 255, 0.08) 30%, 
+                transparent 70%);
+            pointer-events: none;
+            z-index: 3;
+            transform: translate(-50%, -50%) scale(0);
+            mix-blend-mode: screen;
+        }
+
+        @keyframes waveExpand {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0.6;
+            }
+            70% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .water-cursor {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.08) 0%, 
+                rgba(255, 255, 255, 0.05) 30%, 
+                transparent 70%);
+            border: 2.5px solid rgba(255, 255, 255, 0.25);
+            pointer-events: none;
+            z-index: 1000;
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0;
+            transition: opacity 0.5s ease, 
+                        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        border-color 0.3s ease;
+            mix-blend-mode: plus-lighter;
+            filter: blur(1px);
+            box-shadow: 
+                0 0 25px rgba(255, 255, 255, 0.12),
+                0 0 50px rgba(173, 216, 230, 0.08);
+        }
+
+        .cursor-halo {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background: radial-gradient(circle, 
+                rgba(173, 216, 230, 0.12) 0%,
+                rgba(173, 216, 230, 0.05) 40%,
+                transparent 70%);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            filter: blur(1px);
+        }
+
+        .distortion-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.01) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.01) 50%, transparent 51%);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 4;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            mix-blend-mode: overlay;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                padding: 12px 20px;
+            }
+            
+            .pulse-button {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            
+            .music-button {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .logo {
+                font-size: 0;
+            }
+            
+            .logo-image {
+                height: 32px;
+            }
+            
+            .logo::after {
+                display: none;
+            }
+            
+            .donation-popup {
+                padding: 25px;
+                margin: 20px;
+                max-height: 90vh;
+            }
+            
+            .popup-content {
+                max-height: calc(90vh - 100px);
+            }
+            
+            .qr-code-placeholder {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .popup-buttons {
+                flex-direction: column;
+            }
+            
+            .hero-section {
+                height: 80vh;
+                margin-top: 56px;
+            }
+            
+            .water-cursor {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .cursor-halo {
+                width: 75px;
+                height: 75px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-height: 700px) {
+            .donation-popup {
+                max-height: 80vh;
+            }
+            
+            .popup-content {
+                max-height: calc(80vh - 120px);
+            }
+            
+            .qr-code-placeholder {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        .hero-section, .water-cursor, .water-wave, .cursor-halo {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* SEÇÃO - MAG */
+        .humans-section {
+            background: rgba(240, 242, 245, 0.95);
+            padding: 60px 20px;
+            position: relative;
+            z-index: 5;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            min-height: auto;
+        }
+
+        .humans-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .humans-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .humans-name {
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .humans-subtitle {
+            font-size: 1rem;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+
+        .humans-quote {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 20px;
+            border-left: 3px solid #1e90ff;
+            background: rgba(30, 144, 255, 0.05);
+            border-radius: 6px;
+        }
+
+        .humans-quote-text {
+            font-size: 1.1rem;
+            color: #34495e;
+            line-height: 1.6;
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .humans-quote-author {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .humans-content {
+            color: #4a5568;
+            line-height: 1.7;
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+
+        .humans-content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .humans-highlight {
+            color: #2c3e50;
+            font-weight: 500;
+            border-left: 3px solid #1e90ff;
+            padding-left: 15px;
+            margin: 25px 0;
+            font-style: italic;
+            background: rgba(30, 144, 255, 0.05);
+            padding: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .humans-qualities {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .humans-quality {
+            padding: 18px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .humans-quality:hover {
+            background: #f8f9fa;
+            border-color: rgba(30, 144, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .humans-quality-title {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .humans-quality-desc {
+            font-size: 0.9rem;
+            color: #5d6d7e;
+            line-height: 1.5;
+        }
+
+        .humans-signature {
+            text-align: right;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-style: italic;
+            font-size: 0.95rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .humans-section {
+                padding: 40px 20px;
+            }
+            
+            .humans-name {
+                font-size: 1.8rem;
+            }
+            
+            .humans-quote {
+                padding: 15px;
+            }
+            
+            .humans-quote-text {
+                font-size: 1rem;
+            }
+            
+            .humans-content {
+                font-size: 1rem;
+            }
+            
+            .humans-qualities {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .humans-name {
+                font-size: 1.6rem;
+            }
+            
+            .humans-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .humans-content {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* GALERIA DE FOTOS SIMPLES */
+        .gallery-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .gallery-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            border-radius: 2px;
+        }
+
+        .gallery-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            aspect-ratio: 4/3;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.3);
+            border-color: rgba(30, 144, 255, 0.4);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 25px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-caption {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .gallery-date {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            transition: transform 0.4s ease;
+        }
+
+        .lightbox-modal.active .lightbox-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .lightbox-image-container {
+            position: relative;
+            width: 100%;
+            height: 70vh;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .lightbox-title {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .lightbox-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .lightbox-button {
+            background: rgba(30, 144, 255, 0.3);
+            border: 1px solid rgba(30, 144, 255, 0.5);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-button:hover {
+            background: rgba(30, 144, 255, 0.5);
+            border-color: rgba(30, 144, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-section {
+                padding: 60px 20px;
+            }
+            
+            .gallery-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 3/2;
+            }
+            
+            .lightbox-image-container {
+                height: 50vh;
+            }
+            
+            .lightbox-button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* FOOTER ELEGANTE */
+        .site-footer {
+            background: rgba(15, 15, 20, 0.95);
+            position: relative;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-section:nth-child(1) { animation-delay: 0.1s; }
+        .footer-section:nth-child(2) { animation-delay: 0.2s; }
+        .footer-section:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo img {
+            height: 32px;
+            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(30, 144, 255, 0.3));
+        }
+
+        .footer-logo span {
+            font-size: 22px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-icon svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .social-icon:hover {
+            background: rgba(30, 144, 255, 0.2);
+            border-color: rgba(30, 144, 255, 0.4);
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.2);
+        }
+
+        .footer-title {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            border-radius: 2px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 4px 0;
+            position: relative;
+        }
+
+        .footer-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 0.95);
+            transform: translateX(5px);
+        }
+
+        .footer-links a:hover::before {
+            width: 100%;
+        }
+
+        .footer-contact {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        .footer-contact li svg {
+            width: 18px;
+            height: 18px;
+            color: #1e90ff;
+            flex-shrink: 0;
+        }
+
+        .newsletter {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-title {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: rgba(30, 144, 255, 0.5);
+            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.1);
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-button {
+            width: 46px;
+            height: 46px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            border: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .newsletter-button svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .newsletter-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
+        }
+
+        .footer-bottom {
+            position: relative;
+            padding: 25px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 15, 0.8);
+        }
+
+        .footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            margin: 0;
+        }
+
+        .heart {
+            color: #ff4757;
+            animation: heartbeat 1.5s ease infinite;
+            display: inline-block;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .footer-wave {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            opacity: 0.6;
+        }
+
+        .footer-wave svg {
+            width: 100%;
+            height: 100%;
+            fill: rgba(10, 10, 15, 0.95);
+        }
+
+        /* Responsividade Footer */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 40px 20px 30px;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+            
+            .footer-logo {
+                justify-content: center;
+            }
+            
+            .footer-description {
+                max-width: 100%;
+            }
+            
+            .footer-social {
+                justify-content: center;
+            }
+            
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-contact li {
+                justify-content: center;
+            }
+            
+            .footer-bottom-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-logo span {
+                font-size: 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-button {
+                width: 100%;
+            }
+        }
+        
+        /* CORREÇÃO PARA MOBILE - MANTENDO SCROLL APENAS NO POPUP */
+        @media (max-width: 768px) {
+            .popup-content {
+                overflow-y: auto !important;
+                max-height: calc(90vh - 140px) !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .donation-popup {
+                display: flex;
+                flex-direction: column;
+                max-height: 90vh;
+                overflow: hidden;
+            }
+            
+            .popup-buttons {
+                margin-top: 20px;
+                flex-shrink: 0;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* SEÇÃO DE PLANOS DE GOVERNO - ATUALIZADA PARA SENADO */
+        .plans-section {
+            background: linear-gradient(135deg, #0a1929 0%, #0c2340 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .plans-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.5), transparent);
+        }
+
+        .plans-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .plans-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .plans-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .plans-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            border-radius: 2px;
+        }
+
+        .plans-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
+        .plan-card:nth-child(4) { animation-delay: 0.4s; }
+        .plan-card:nth-child(5) { animation-delay: 0.5s; }
+        .plan-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(30, 144, 255, 0.4);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(30, 144, 255, 0.2),
+                0 8px 30px rgba(30, 144, 255, 0.15);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .plan-card:hover::before {
+            opacity: 1;
+        }
+
+        .plan-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(30, 144, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(30, 144, 255, 0.2);
+        }
+
+        .plan-icon svg {
+            width: 30px;
+            height: 30px;
+            color: #1e90ff;
+        }
+
+        .plan-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #1e90ff;
+            font-weight: bold;
+        }
+
+        .plan-metrics {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .metric {
+            text-align: center;
+            flex: 1;
+        }
+
+        .metric-value {
+            display: block;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* Resumo dos Planos */
+        .plans-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.7s;
+        }
+
+        .summary-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .summary-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .summary-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .summary-text strong {
+            color: white;
+            font-weight: 500;
+        }
+
+        .summary-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .summary-metric {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .summary-value {
+            display: block;
+            color: #1e90ff;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .summary-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .summary-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-plan, .share-plan {
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .download-plan {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            color: white;
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+        }
+
+        .download-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(30, 144, 255, 0.4);
+        }
+
+        .share-plan {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .share-plan:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .download-plan svg, .share-plan svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Modal do Plano */
+        .plan-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .plan-modal.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .plan-modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            background: rgba(15, 25, 40, 0.95);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: transform 0.4s ease;
+        }
+
+        .plan-modal.active .plan-modal-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .plan-modal-header {
+            padding: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-modal-header h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .close-modal {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .plan-modal-body {
+            padding: 30px;
+            max-height: calc(85vh - 100px);
+            overflow-y: auto;
+        }
+
+        .modal-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tab-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            color: white;
+            border-color: rgba(30, 144, 255, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .plans-section {
+                padding: 60px 20px;
+            }
+            
+            .plans-title {
+                font-size: 2.2rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .plan-card {
+                padding: 25px 20px;
+            }
+            
+            .plans-summary {
+                padding: 30px 20px;
+            }
+            
+            .summary-title {
+                font-size: 1.6rem;
+            }
+            
+            .summary-metrics {
+                gap: 20px;
+            }
+            
+            .summary-metric {
+                min-width: 120px;
+            }
+            
+            .summary-value {
+                font-size: 1.4rem;
+            }
+            
+            .summary-actions {
+                flex-direction: column;
+            }
+            
+            .download-plan, .share-plan {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .plan-modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+            
+            .plan-modal-body {
+                max-height: calc(90vh - 100px);
+            }
+            
+            .modal-tabs {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                padding-bottom: 15px;
+            }
+            
+            .tab-button {
+                white-space: nowrap;
+                font-size: 13px;
+                padding: 10px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .plans-title {
+                font-size: 1.8rem;
+            }
+            
+            .plans-subtitle {
+                font-size: 1rem;
+            }
+            
+            .plan-title {
+                font-size: 1.3rem;
+            }
+            
+            .plan-features li {
+                font-size: 0.9rem;
+            }
+            
+            .summary-metrics {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+
+
+
+
+
+
+
+        /* Versão mobile - imagem diferente */
+@media (max-width: 768px) {
+    .front-image {
+        background-image: url('04.png'); /* imagem específica para mobile */
+        background-size: contain; /* garante que a imagem inteira seja visível */
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #0a0a0a; /* cor de fundo para preencher espaços vazios */
+    }
+    
+    .back-image {
+        background-image: url('05.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: #0a0a0a;
+    }
+}
+
+
+
+
+
+
+
+.igor {
+    color: #ffd400;
+    font-weight: 600;
+    text-decoration: none;
+    animation: pulseYellow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseYellow {
+    0% {
+        color: #ffd400;
+        text-shadow: 0 0 0px rgba(255, 212, 0, 0);
+    }
+    50% {
+        color: #ffea00;
+        text-shadow: 0 0 8px rgba(255, 212, 0, 0.8);
+    }
+    100% {
+        color: #ffd400;
+        text-shadow: 0 0 0px rgba(255, 212, 0, 0);
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- Barra de menu -->
+    <nav class="menu">
+        <div class="menu-content">
+            <div class="logo">
+                <div class="logo-image">
+                    <img src="03.png" alt="MAG 2026 Logo">
+                </div>
+                <span></span>
+            </div>
+            
+            <div class="menu-buttons">
+                <!-- Botão de Música -->
+                <button class="music-button" id="musicButton" title="Reproduzir/Pausar música">
+                    <span id="musicIcon">▶</span>
+                </button>
+                
+                <!-- Botão Apoiar -->
+                <button class="pulse-button" id="supportButton">
+                    Apoiar
+                </button>
+            </div>
+        </div>
+        
+        <div class="menu-particles" id="menuParticles"></div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+        <!-- Popup de Doação -->
+        <div class="donation-overlay" id="donationOverlay">
+            <div class="donation-popup">
+                <div class="popup-header">
+                    <h2>Apoie a Campanha de MAG ao Senado</h2>
+                    <p>Sua contribuição ajuda a fortalecer nossa luta por um Brasil mais justo. Escaneie o QR Code ou copie a chave PIX. Qualquer valor é bem-vindo e será usado para levar nossa mensagem a todos os cantos do estado.</p>
+                </div>
+                
+                <div class="popup-content">
+                    <div class="qr-code-container">
+                        <div class="qr-code-placeholder">
+                            <span>PIX</span>
+                        </div>
+                        <p class="qr-instructions">Abra seu app de banco, selecione PIX e escaneie o código acima. Você também pode copiar a chave PIX abaixo e colar no seu aplicativo bancário.</p>
+                    </div>
+                    
+                    <div class="pix-key-container">
+                        <span class="pix-key-label">Chave PIX (CNPJ)</span>
+                        <div class="pix-key">
+                            <div class="pix-key-value" id="pixKeyValue">12.345.678/0001-99</div>
+                            <button class="copy-button" id="copyButton">
+                                <span>Copiar</span>
+                            </button>
+                        </div>
+                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-top: 8px;">Esta é uma chave PIX do tipo CNPJ. Pode ser usada em qualquer banco que aceite PIX.</p>
+                    </div>
+                    
+                    <div style="background: rgba(30, 144, 255, 0.1); border-radius: 12px; padding: 16px; border: 1px solid rgba(30, 144, 255, 0.2); margin-top: 20px;">
+                        <h3 style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin-bottom: 8px;">✨ Sua doação ajuda:</h3>
+                        <ul style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.6; padding-left: 20px;">
+                            <li>Levar nossa mensagem a mais pessoas</li>
+                            <li>Produzir materiais de campanha</li>
+                            <li>Organizar eventos e encontros</li>
+                            <li>Fortalecer a democracia e a participação popular</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="popup-buttons">
+                    <button class="close-button" id="closeDonationButton">Fechar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mensagem de Agradecimento -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <div class="thank-you-icon">🎉</div>
+            <h3>Obrigado pelo Apoio!</h3>
+            <p>Sua contribuição faz toda a diferença para nossa campanha ao Senado. Juntos vamos construir um Brasil mais justo!</p>
+            <button class="thank-you-close" id="closeThankYouButton">Continuar Explorando</button>
+        </div>
+
+        <!-- Seção Hero com efeito -->
+        <div class="hero-section" id="hero-section">
+            <div class="image-layer front-image"></div>
+            <div class="image-layer back-image" id="back-image"></div>
+            <div class="water-cursor" id="water-cursor"></div>
+            <div class="cursor-halo" id="cursor-halo"></div>
+            <div class="distortion-grid" id="distortion-grid"></div>
+        </div>
+
+        <!-- Seção MAG -->
+        <section class="humans-section" id="humans-section">
+            <div class="humans-container">
+                <div class="humans-header">
+                    <h1 class="humans-name">MAG 2026</h1>
+                    <p class="humans-subtitle">Pré-candidato ao Senado Federal - Uma voz em defesa do povo</p>
+                    
+                    <div class="humans-quote">
+                        <p class="humans-quote-text">"O Senado precisa de pessoas que entendam as dores do povo e trabalhem incansavelmente por um país mais justo, próspero e com oportunidades para todos."</p>
+                        <p class="humans-quote-author">— MAG</p>
+                    </div>
+                </div>
+
+                <div class="humans-content">
+                    <p>MAG é mais que um nome na política: é um compromisso com a transformação que o Brasil precisa. Sua trajetória é marcada pela dedicação às causas populares e pela luta incansável por justiça social e desenvolvimento econômico com inclusão.</p>
+                    
+                    <p>Em cada batalha, deixou a marca de quem entende a política não como um fim em si mesmo, mas como ferramenta para melhorar a vida das pessoas. Seu olhar sempre esteve voltado para quem mais precisa: os trabalhadores, os jovens, as famílias que lutam por dignidade.</p>
+                    
+                    <div class="humans-highlight">
+                        A política, para MAG, nunca foi sobre cargos ou privilégios, mas sobre serviço. Sobre usar o mandato para amplificar as vozes que não são ouvidas e defender os interesses do povo brasileiro.
+                    </div>
+                    
+                    <p>Sua liderança se caracteriza por uma rara combinação: firmeza nos princípios e capacidade de diálogo. Sabia quando ouvir, quando argumentar, quando agir. E em todos esses momentos, manteve intacta sua integridade — qualidade essencial para quem deseja representar a população no Senado Federal.</p>
+                    
+                    <div class="humans-qualities">
+                        <div class="humans-quality">
+                            <div class="humans-quality-title">Compromisso com o Povo</div>
+                            <div class="humans-quality-desc">Prioridade absoluta para as necessidades da população, especialmente dos mais vulneráveis.</div>
+                        </div>
+                        <div class="humans-quality">
+                            <div class="humans-quality-title">Diálogo e Construção</div>
+                            <div class="humans-quality-desc">Capacidade de ouvir, negociar e construir consensos em prol do bem comum.</div>
+                        </div>
+                        <div class="humans-quality">
+                            <div class="humans-quality-title">Transparência e Ética</div>
+                            <div class="humans-quality-desc">Compromisso inegociável com a honestidade e a prestação de contas à sociedade.</div>
+                        </div>
+                    </div>
+                    
+                    <p>Mais do que projetos e discursos, a marca de MAG está na confiança que construiu ao longo dos anos. Na certeza de que existem homens públicos que entendem seu papel como missão, não como carreira.</p>
+                    
+                    <p class="humans-signature">Um nome que inspira confiança e representa a esperança de um Brasil melhor para todos.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PLANOS DE GOVERNO - ATUALIZADO PARA SENADO -->
+        <section class="plans-section" id="plans-section">
+            <div class="plans-container">
+                <div class="plans-header">
+                    <h2 class="plans-title">Plano para o Senado 2026</h2>
+                    <p class="plans-subtitle">Uma visão clara para representar nosso estado no Senado Federal. Conheça nossas propostas e compromissos com o povo brasileiro.</p>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- Desenvolvimento Econômico -->
+                    <div class="plan-card" data-category="economia">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Desenvolvimento Econômico</h3>
+                        <ul class="plan-features">
+                            <li>Defesa da indústria nacional e geração de empregos</li>
+                            <li>Incentivos para pequenas e médias empresas</li>
+                            <li>Reforma tributária que não prejudique os mais pobres</li>
+                            <li>Estímulo à inovação e ao empreendedorismo</li>
+                            <li>Políticas de crédito para agricultura familiar</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">+500 mil</span>
+                                <span class="metric-label">Empregos gerados</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">4 anos</span>
+                                <span class="metric-label">Mandato</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Educação e Conhecimento -->
+                    <div class="plan-card" data-category="educacao">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Educação como Prioridade</h3>
+                        <ul class="plan-features">
+                            <li>Valorização dos professores e profissionais da educação</li>
+                            <li>Ampliação do investimento em escolas públicas</li>
+                            <li>Defesa do FUNDEB e da educação básica de qualidade</li>
+                            <li>Programas de bolsas para estudantes de baixa renda</li>
+                            <li>Expansão da educação técnica e profissionalizante</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">+R$ 50 bi</span>
+                                <span class="metric-label">Para educação</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">10 milhões</span>
+                                <span class="metric-label">Alunos beneficiados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Saúde Pública -->
+                    <div class="plan-card" data-category="saude">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Saúde Pública Forte</h3>
+                        <ul class="plan-features">
+                            <li>Defesa intransigente do SUS</li>
+                            <li>Mais recursos para hospitais e postos de saúde</li>
+                            <li>Redução das filas de espera para consultas e exames</li>
+                            <li>Valorização dos profissionais da saúde</li>
+                            <li>Programas de prevenção e atenção básica</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">R$ 30 bi</span>
+                                <span class="metric-label">Investimento anual</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+20 mil</span>
+                                <span class="metric-label">Profissionais contratados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Segurança Pública -->
+                    <div class="plan-card" data-category="seguranca">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Segurança Cidadã</h3>
+                        <ul class="plan-features">
+                            <li>Políticas de prevenção à violência</li>
+                            <li>Valorização das polícias e agentes de segurança</li>
+                            <li>Combate ao crime organizado e ao tráfico de drogas</li>
+                            <li>Investimento em inteligência e tecnologia</li>
+                            <li>Proteção às mulheres e grupos vulneráveis</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">-30%</span>
+                                <span class="metric-label">Redução da violência</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+15 mil</span>
+                                <span class="metric-label">Novos policiais</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Meio Ambiente -->
+                    <div class="plan-card" data-category="ambiente">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Sustentabilidade e Clima</h3>
+                        <ul class="plan-features">
+                            <li>Defesa da Amazônia e dos biomas brasileiros</li>
+                            <li>Incentivo às energias renováveis</li>
+                            <li>Desenvolvimento sustentável com geração de empregos</li>
+                            <li>Combate ao desmatamento ilegal</li>
+                            <li>Proteção das águas e recursos naturais</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">-50%</span>
+                                <span class="metric-label">Desmatamento</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">+1 milhão</span>
+                                <span class="metric-label">Árvores plantadas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direitos Sociais -->
+                    <div class="plan-card" data-category="social">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-1 .05 1.16.84 2 1.87 2 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Direitos Sociais e Inclusão</h3>
+                        <ul class="plan-features">
+                            <li>Defesa dos direitos dos trabalhadores</li>
+                            <li>Proteção às minorias e grupos vulneráveis</li>
+                            <li>Políticas de inclusão e combate à desigualdade</li>
+                            <li>Moradia digna para todos</li>
+                            <li>Apoio às pessoas com deficiência</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">+5 milhões</span>
+                                <span class="metric-label">Pessoas assistidas</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">R$ 20 bi</span>
+                                <span class="metric-label">Em programas sociais</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="plans-summary">
+                    <div class="summary-content">
+                        <h3 class="summary-title">Compromissos com o Povo</h3>
+                        <p class="summary-text">Nossa atuação no Senado será baseada em 3 pilares fundamentais: <strong>Defesa intransigente dos direitos do povo</strong>, <strong>Desenvolvimento econômico com justiça social</strong> e <strong>Combate à corrupção e transparência</strong>. Acreditamos que o Brasil pode ser um país mais justo e próspero para todos.</p>
+                        
+                        <div class="summary-metrics">
+                            <div class="summary-metric">
+                                <span class="summary-value">12 projetos</span>
+                                <span class="summary-label">Prioritários no 1º ano</span>
+                            </div>
+                            <div class="summary-metric">
+                                <span class="summary-value">+30 milhões</span>
+                                <span class="summary-label">Brasileiros impactados</span>
+                            </div>
+                            <div class="summary-metric">
+                                <span class="summary-value">100%</span>
+                                <span class="summary-label">Transparência e prestação de contas</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-actions">
+                            <button class="download-plan" id="downloadPlan">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                </svg>
+                                Baixar Plano Completo (PDF)
+                            </button>
+                            <button class="share-plan" id="sharePlan">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                                </svg>
+                                Compartilhar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal para o plano completo -->
+        <div class="plan-modal" id="planModal">
+            <div class="plan-modal-content">
+                <div class="plan-modal-header">
+                    <h2>Plano para o Senado - Completo</h2>
+                    <button class="close-modal" id="closeModal">✕</button>
+                </div>
+                <div class="plan-modal-body">
+                    <div class="modal-tabs">
+                        <button class="tab-button active" data-tab="resumo">Resumo Executivo</button>
+                        <button class="tab-button" data-tab="metas">Metas e Indicadores</button>
+                        <button class="tab-button" data-tab="cronograma">Cronograma</button>
+                        <button class="tab-button" data-tab="orcamento">Orçamento</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="resumo-tab">
+                        <h3>Resumo Executivo</h3>
+                        <p>Nosso plano de atuação no Senado é estruturado em 6 eixos principais, com 12 projetos prioritários no primeiro ano que transformarão a realidade de milhões de brasileiros.</p>
+                        <p>Cada iniciativa foi planejada com base em diálogo com a população, experiências bem-sucedidas e análise técnica, garantindo que nossa atuação atenda às reais necessidades do povo brasileiro.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="metas-tab">
+                        <h3>Metas e Indicadores</h3>
+                        <p>Estabelecemos metas claras e indicadores mensuráveis para cada área, permitindo o acompanhamento transparente de nossa atuação no Senado. Acompanhe nosso mandato e cobre resultados.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="cronograma-tab">
+                        <h3>Cronograma de Atuação</h3>
+                        <p>Planejamento detalhado das ações ao longo dos 8 anos de mandato, com marcos semestrais e avaliações periódicas de resultados.</p>
+                    </div>
+                    
+                    <div class="tab-content" id="orcamento-tab">
+                        <h3>Orçamento e Fontes</h3>
+                        <p>Detalhamento completo das fontes de recursos e alocação orçamentária necessária para implementação de cada projeto e proposta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GALERIA DE FOTOS SIMPLES -->
+        <section class="gallery-section" id="gallery-section">
+            <div class="gallery-container">
+                <div class="gallery-header">
+                    <h2 class="gallery-title">Galeria MAG 2026</h2>
+                    <p class="gallery-subtitle">Momentos marcantes da trajetória de luta e compromisso com o povo</p>
+                </div>
+
+                <!-- Grid de Fotos -->
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Foto 1 -->
+                    <div class="gallery-item" data-index="0">
+                        <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em evento político" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Encontro com lideranças</h3>
+                            <p class="gallery-date">2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 2 -->
+                    <div class="gallery-item" data-index="1">
+                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG com comunidades" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Diálogo com o povo</h3>
+                            <p class="gallery-date">2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 3 -->
+                    <div class="gallery-item" data-index="2">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em reunião" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Reunião de trabalho</h3>
+                            <p class="gallery-date">2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 4 -->
+                    <div class="gallery-item" data-index="3">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG discursando" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Discurso em evento</h3>
+                            <p class="gallery-date">2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 5 -->
+                    <div class="gallery-item" data-index="4">
+                        <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em reunião com equipe" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Construção coletiva</h3>
+                            <p class="gallery-date">2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 6 -->
+                    <div class="gallery-item" data-index="5">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG com apoiadores" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Apoio popular</h3>
+                            <p class="gallery-date">2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 7 -->
+                    <div class="gallery-item" data-index="6">
+                        <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Momento de reflexão" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Compromisso com o futuro</h3>
+                            <p class="gallery-date">2024</p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 8 -->
+                    <div class="gallery-item" data-index="7">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipe de campanha" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-caption">Equipe MAG 2026</h3>
+                            <p class="gallery-date">2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div class="lightbox-modal" id="lightboxModal">
+            <div class="lightbox-content">
+                <div class="lightbox-image-container">
+                    <img id="lightboxImage" class="lightbox-image" alt="">
+                    <div class="lightbox-caption">
+                        <h3 id="lightboxTitle" class="lightbox-title"></h3>
+                        <p id="lightboxDescription" class="lightbox-description"></p>
+                    </div>
+                </div>
+                <div class="lightbox-nav">
+                    <button class="lightbox-button" id="prevButton">❮</button>
+                    <button class="lightbox-button" id="nextButton">❯</button>
+                </div>
+                <button class="lightbox-close" id="closeLightbox">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Elegante -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Seção Logo e Descrição -->
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="MAG 2026 Logo">
+                    <span>2026</span>
+                </div>
+                <p class="footer-description">
+                    Juntos por um Brasil mais justo, próspero e com oportunidades para todos. O futuro se constrói com diálogo, respeito e compromisso com o povo.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" title="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon" title="YouTube">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Seção Links Rápidos -->
+            <div class="footer-section">
+                <h3 class="footer-title">Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#hero-section">Início</a></li>
+                    <li><a href="#humans-section">Sobre MAG</a></li>
+                    <li><a href="#plans-section">Propostas</a></li>
+                    <li><a href="#gallery-section">Galeria</a></li>
+                    <li><a href="#" class="show-donation">Apoiar Campanha</a></li>
+                    <li><a href="#">Participe</a></li>
+                    <li><a href="#">Contato</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
+                </ul>
+            </div>
+
+            <!-- Seção Contato -->
+            <div class="footer-section">
+                <h3 class="footer-title">Entre em Contato</h3>
+                <ul class="footer-contact">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>contato@mag2026.com</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        <span>(61) 99999-9999</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <span>Brasília - DF</span>
+                    </li>
+                </ul>
+                
+                <div class="newsletter">
+                    <h4 class="newsletter-title">Receba Novidades</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Seu e-mail" class="newsletter-input">
+                        <button class="newsletter-button">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Linha de Copyright -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; <span id="currentYear"></span> MAG 2026. Todos os direitos reservados.</p>
+                <p>Desenvolvido com <span class="heart">❤</span> por <a class="igor" href="https://behance.net/igorfermon/projects">Igor Monção</a></p>
+            </div>
+            
+            <!-- Efeito de onda no footer -->
+            <div class="footer-wave">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+                </svg>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Áudio para efeito sonoro -->
+    <audio id="successSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Áudio para a música jingle.mp3 -->
+    <audio id="backgroundMusic" preload="auto" loop>
+        <source src="jingle.mp3" type="audio/mpeg">
+        <source src="jingle.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- SCRIPT Completo -->
+    <script>
+        if (window.waterEffectInitialized) {
+            console.warn('Water Effect já está inicializado');
+        } else {
+            window.waterEffectInitialized = true;
+            
+            // Sistema de Música
+            class MusicSystem {
+                constructor() {
+                    this.musicButton = document.getElementById('musicButton');
+                    this.musicIcon = document.getElementById('musicIcon');
+                    this.backgroundMusic = document.getElementById('backgroundMusic');
+                    this.isPlaying = false;
+                    
+                    this.init();
+                }
+                
+                init() {
+                    this.setupEventListeners();
+                    this.startAutoplay();
+                }
+                
+                setupEventListeners() {
+                    this.musicButton.addEventListener('click', () => {
+                        this.toggleMusic();
+                    });
+                    
+                    this.backgroundMusic.addEventListener('ended', () => {
+                        this.pauseMusic();
+                    });
+                    
+                    this.backgroundMusic.addEventListener('play', () => {
+                        this.updateButtonState(true);
+                    });
+                    
+                    this.backgroundMusic.addEventListener('pause', () => {
+                        this.updateButtonState(false);
+                    });
+                }
+                
+                startAutoplay() {
+                    const playPromise = this.backgroundMusic.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            this.isPlaying = true;
+                            this.updateButtonState(true);
+                            console.log('Música iniciada automaticamente');
+                        }).catch(error => {
+                            console.log('Autoplay bloqueado pelo navegador');
+                            this.isPlaying = false;
+                            this.updateButtonState(false);
+                            
+                            document.addEventListener('click', () => {
+                                if (!this.isPlaying) {
+                                    this.backgroundMusic.play().then(() => {
+                                        this.isPlaying = true;
+                                        this.updateButtonState(true);
+                                    }).catch(() => {});
+                                }
+                            }, { once: true });
+                        });
+                    }
+                }
+                
+                toggleMusic() {
+                    if (this.isPlaying) {
+                        this.pauseMusic();
+                    } else {
+                        this.playMusic();
+                    }
+                }
+                
+                playMusic() {
+                    this.backgroundMusic.play().then(() => {
+                        this.isPlaying = true;
+                        this.updateButtonState(true);
+                    }).catch(error => {
+                        console.log('Erro ao reproduzir música:', error);
+                    });
+                }
+                
+                pauseMusic() {
+                    this.backgroundMusic.pause();
+                    this.isPlaying = false;
+                    this.updateButtonState(false);
+                }
+                
+                updateButtonState(playing) {
+                    this.isPlaying = playing;
+                    
+                    if (playing) {
+                        this.musicButton.classList.add('playing');
+                        this.musicIcon.textContent = '⏸';
+                        this.musicButton.title = 'Pausar música';
+                    } else {
+                        this.musicButton.classList.remove('playing');
+                        this.musicIcon.textContent = '▶';
+                        this.musicButton.title = 'Reproduzir música';
+                    }
+                }
+            }
+            
+            // Sistema de Doação
+            class DonationSystem {
+                constructor() {
+                    this.supportButton = document.getElementById('supportButton');
+                    this.donationOverlay = document.getElementById('donationOverlay');
+                    this.closeDonationButton = document.getElementById('closeDonationButton');
+                    this.copyButton = document.getElementById('copyButton');
+                    this.pixKeyValue = document.getElementById('pixKeyValue');
+                    this.thankYouMessage = document.getElementById('thankYouMessage');
+                    this.closeThankYouButton = document.getElementById('closeThankYouButton');
+                    this.successSound = document.getElementById('successSound');
+                    this.popupContent = document.querySelector('.popup-content');
+                    
+                    this.isCopied = false;
+                    
+                    this.init();
+                }
+                
+                init() {
+                    this.setupEventListeners();
+                    this.loadSuccessSound();
+                    this.adjustPopupHeight();
+                }
+                
+                adjustPopupHeight() {
+                    const updatePopupHeight = () => {
+                        const isMobile = window.innerWidth <= 768;
+                        const vh = window.innerHeight * 0.01;
+                        
+                        if (isMobile) {
+                            // No mobile: altura do conteúdo deve permitir scroll
+                            const popup = document.querySelector('.donation-popup');
+                            const headerHeight = document.querySelector('.popup-header').offsetHeight;
+                            const buttonsHeight = document.querySelector('.popup-buttons').offsetHeight;
+                            
+                            // Ajusta a altura máxima do conteúdo
+                            const maxContentHeight = window.innerHeight * 0.9 - headerHeight - buttonsHeight - 40;
+                            this.popupContent.style.maxHeight = `${maxContentHeight}px`;
+                        }
+                    };
+                    
+                    updatePopupHeight();
+                    window.addEventListener('resize', updatePopupHeight);
+                }
+                
+                loadSuccessSound() {
+                    this.successSound.load();
+                }
+                
+                setupEventListeners() {
+                    this.supportButton.addEventListener('click', () => {
+                        this.showDonationPopup();
+                    });
+                    
+                    this.closeDonationButton.addEventListener('click', () => {
+                        this.closeDonationPopup();
+                    });
+                    
+                    this.copyButton.addEventListener('click', () => {
+                        this.copyPixKey();
+                    });
+                    
+                    this.closeThankYouButton.addEventListener('click', () => {
+                        this.closeThankYouMessage();
+                    });
+                    
+                    this.donationOverlay.addEventListener('click', (e) => {
+                        if (e.target === this.donationOverlay) {
+                            this.closeDonationPopup();
+                        }
+                    });
+                    
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            if (this.donationOverlay.classList.contains('active')) {
+                                this.closeDonationPopup();
+                            }
+                            if (this.thankYouMessage.classList.contains('active')) {
+                                this.closeThankYouMessage();
+                            }
+                        }
+                    });
+                    
+                    // Impedir scroll do background quando estiver scrollando no popup
+                    this.popupContent.addEventListener('wheel', (e) => {
+                        const isAtTop = this.popupContent.scrollTop === 0;
+                        const isAtBottom = this.popupContent.scrollHeight - this.popupContent.scrollTop === this.popupContent.clientHeight;
+                        
+                        if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+                            e.stopPropagation();
+                        }
+                    });
+                }
+                
+                showDonationPopup() {
+                    this.donationOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    setTimeout(() => {
+                        this.popupContent.scrollTop = 0;
+                    }, 50);
+                }
+                
+                closeDonationPopup() {
+                    this.donationOverlay.classList.remove('active');
+                    setTimeout(() => {
+                        this.showThankYouMessage();
+                    }, 300);
+                    
+                    setTimeout(() => {
+                        document.body.style.overflow = 'auto';
+                    }, 400);
+                }
+                
+                copyPixKey() {
+                    const pixKey = this.pixKeyValue.textContent;
+                    
+                    navigator.clipboard.writeText(pixKey)
+                        .then(() => {
+                            this.showCopySuccess();
+                        })
+                        .catch(err => {
+                            this.fallbackCopy(pixKey);
+                        });
+                }
+                
+                fallbackCopy(text) {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.opacity = '0';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    try {
+                        document.execCommand('copy');
+                        this.showCopySuccess();
+                    } catch (err) {
+                        console.error('Erro ao copiar:', err);
+                        alert('Não foi possível copiar a chave PIX. Por favor, copie manualmente: ' + text);
+                    }
+                    
+                    document.body.removeChild(textArea);
+                }
+                
+                showCopySuccess() {
+                    if (!this.isCopied) {
+                        this.isCopied = true;
+                        const originalText = this.copyButton.innerHTML;
+                        
+                        this.copyButton.classList.add('copied');
+                        this.copyButton.innerHTML = '<span>✓ Copiado!</span>';
+                        
+                        setTimeout(() => {
+                            this.copyButton.classList.remove('copied');
+                            this.copyButton.innerHTML = originalText;
+                            this.isCopied = false;
+                        }, 3000);
+                    }
+                }
+                
+                showThankYouMessage() {
+                    this.playSuccessSound();
+                    this.thankYouMessage.classList.add('active');
+                    this.createThankYouWaves();
+                }
+                
+                playSuccessSound() {
+                    this.successSound.currentTime = 0;
+                    this.successSound.play().catch(e => {
+                        console.log('Autoplay bloqueado para som de sucesso');
+                    });
+                }
+                
+                createThankYouWaves() {
+                    for (let i = 0; i < 5; i++) {
+                        setTimeout(() => {
+                            const x = Math.random() * window.innerWidth;
+                            const y = Math.random() * window.innerHeight;
+                            const size = 80 + Math.random() * 120;
+                            
+                            const wave = document.createElement('div');
+                            wave.className = 'water-wave';
+                            wave.style.left = `${x}px`;
+                            wave.style.top = `${y}px`;
+                            wave.style.width = `${size}px`;
+                            wave.style.height = `${size}px`;
+                            document.getElementById('hero-section').appendChild(wave);
+                            
+                            wave.style.animation = `waveExpand 2s cubic-bezier(0.4, 0, 0.2, 1) forwards`;
+                            
+                            setTimeout(() => {
+                                if (wave.parentNode) {
+                                    wave.parentNode.removeChild(wave);
+                                }
+                            }, 2000);
+                        }, i * 300);
+                    }
+                }
+                
+                closeThankYouMessage() {
+                    this.thankYouMessage.classList.remove('active');
+                }
+            }
+            
+            // Efeito de Água
+            class WaterEffect {
+                constructor() {
+                    this.heroSection = document.getElementById('hero-section');
+                    this.backImage = document.getElementById('back-image');
+                    this.waterCursor = document.getElementById('water-cursor');
+                    this.cursorHalo = document.getElementById('cursor-halo');
+                    this.distortionGrid = document.getElementById('distortion-grid');
+                    this.menuParticles = document.getElementById('menuParticles');
+                    
+                    this.config = {
+                        baseRevealSize: 220,
+                        maxRevealSize: 400,
+                        smoothness: 0.1,
+                        trailLength: 10,
+                        waveFrequency: 150,
+                        distortionIntensity: 0.15,
+                        minOpacity: 0.1,
+                        maxOpacity: 0.4,
+                        cursorScaleMultiplier: 1.6,
+                    };
+                    
+                    this.state = {
+                        mouseX: 0,
+                        mouseY: 0,
+                        smoothX: 0,
+                        smoothY: 0,
+                        velocity: 0,
+                        lastX: 0,
+                        lastY: 0,
+                        lastTime: 0,
+                        isActive: false,
+                        isMouseOver: false,
+                        trail: [],
+                        waveTimer: null,
+                        animationId: null,
+                        isAnimating: false
+                    };
+                    
+                    this.init();
+                }
+                
+                init() {
+                    this.setupEventListeners();
+                    this.startAnimation();
+                    this.setInitialImageState();
+                    this.createMenuParticles();
+                }
+                
+                createMenuParticles() {
+                    const particleCount = 8;
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        
+                        const size = Math.random() * 4 + 2;
+                        const left = Math.random() * 100;
+                        const top = Math.random() * 100;
+                        const delay = Math.random() * 20;
+                        
+                        particle.style.width = `${size}px`;
+                        particle.style.height = `${size}px`;
+                        particle.style.left = `${left}%`;
+                        particle.style.top = `${top}%`;
+                        particle.style.animationDelay = `${delay}s`;
+                        particle.style.opacity = Math.random() * 0.4 + 0.1;
+                        
+                        this.menuParticles.appendChild(particle);
+                    }
+                }
+                
+                setInitialImageState() {
+                    this.backImage.style.opacity = '0';
+                    this.backImage.style.maskImage = 'none';
+                    this.backImage.style.webkitMaskImage = 'none';
+                }
+                
+                setupEventListeners() {
+                    let mouseMoveTimeout;
+                    this.heroSection.addEventListener('mousemove', (e) => {
+                        if (mouseMoveTimeout) return;
+                        
+                        mouseMoveTimeout = setTimeout(() => {
+                            const rect = this.heroSection.getBoundingClientRect();
+                            this.state.mouseX = e.clientX - rect.left;
+                            this.state.mouseY = e.clientY - rect.top;
+                            
+                            const now = Date.now();
+                            if (this.state.lastTime > 0) {
+                                const deltaTime = Math.max(1, (now - this.state.lastTime));
+                                const deltaX = this.state.mouseX - this.state.lastX;
+                                const deltaY = this.state.mouseY - this.state.lastY;
+                                const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+                                this.state.velocity = Math.min(distance / (deltaTime * 0.1), 10);
+                            }
+                            
+                            this.state.lastX = this.state.mouseX;
+                            this.state.lastY = this.state.mouseY;
+                            this.state.lastTime = now;
+                            
+                            if (!this.state.isActive) {
+                                this.activateMouseEffect();
+                            }
+                            
+                            this.scheduleWave();
+                            
+                            mouseMoveTimeout = null;
+                        }, 12);
+                    });
+                    
+                    this.heroSection.addEventListener('mouseenter', (e) => {
+                        const rect = this.heroSection.getBoundingClientRect();
+                        this.state.mouseX = e.clientX - rect.left;
+                        this.state.mouseY = e.clientY - rect.top;
+                        
+                        this.waterCursor.style.opacity = '0.3';
+                        this.cursorHalo.style.opacity = '0.25';
+                        this.backImage.style.opacity = '1';
+                        
+                        this.state.isActive = true;
+                        this.state.isMouseOver = true;
+                        
+                        setTimeout(() => {
+                            this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.35)';
+                        }, 100);
+                    });
+                    
+                    this.heroSection.addEventListener('mouseleave', () => {
+                        this.waterCursor.style.opacity = '0';
+                        this.waterCursor.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        this.cursorHalo.style.opacity = '0';
+                        this.backImage.style.opacity = '0';
+                        this.backImage.style.maskImage = 'none';
+                        this.backImage.style.webkitMaskImage = 'none';
+                        this.distortionGrid.style.opacity = '0';
+                        
+                        this.state.isActive = false;
+                        this.state.isMouseOver = false;
+                        this.state.trail = [];
+                    });
+                    
+                    this.heroSection.addEventListener('mousedown', () => {
+                        this.waterCursor.style.transform = 'translate(-50%, -50%) scale(2)';
+                        this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.6)';
+                        this.waterCursor.style.boxShadow = 
+                            '0 0 30px rgba(255, 255, 255, 0.2), 0 0 60px rgba(173, 216, 230, 0.3)';
+                        this.cursorHalo.style.transform = 'translate(-50%, -50%) scale(2.8)';
+                        this.cursorHalo.style.opacity = '0.4';
+                        
+                        this.createWaveCluster(this.state.smoothX, this.state.smoothY, 6);
+                    });
+                    
+                    this.heroSection.addEventListener('mouseup', () => {
+                        this.waterCursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                        this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.35)';
+                        this.waterCursor.style.boxShadow = 
+                            '0 0 25px rgba(255, 255, 255, 0.12), 0 0 50px rgba(173, 216, 230, 0.08)';
+                        this.cursorHalo.style.transform = 'translate(-50%, -50%) scale(2.2)';
+                        this.cursorHalo.style.opacity = '0.25';
+                    });
+                    
+                    this.heroSection.addEventListener('contextmenu', (e) => e.preventDefault());
+                    
+                    let resizeTimeout;
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(() => {
+                            this.state.trail = [];
+                        }, 200);
+                    });
+                }
+                
+                activateMouseEffect() {
+                    this.state.isActive = true;
+                    this.cursorHalo.style.width = '100px';
+                    this.cursorHalo.style.height = '100px';
+                }
+                
+                scheduleWave() {
+                    if (!this.state.waveTimer && this.state.velocity > 0.1) {
+                        this.state.waveTimer = setTimeout(() => {
+                            const waveSize = 60 + (this.state.velocity * 8);
+                            this.createSingleWave(this.state.smoothX, this.state.smoothY, waveSize);
+                            this.state.waveTimer = null;
+                        }, Math.max(80, 150 - (this.state.velocity * 12)));
+                    }
+                }
+                
+                createSingleWave(x, y, size) {
+                    const wave = document.createElement('div');
+                    wave.className = 'water-wave';
+                    wave.style.left = `${x}px`;
+                    wave.style.top = `${y}px`;
+                    wave.style.width = `${size}px`;
+                    wave.style.height = `${size}px`;
+                    this.heroSection.appendChild(wave);
+                    
+                    wave.style.animation = `waveExpand 1.8s cubic-bezier(0.4, 0, 0.2, 1) forwards`;
+                    
+                    setTimeout(() => {
+                        if (wave.parentNode === this.heroSection) {
+                            this.heroSection.removeChild(wave);
+                        }
+                    }, 1800);
+                }
+                
+                createWaveCluster(x, y, count) {
+                    for (let i = 0; i < count; i++) {
+                        setTimeout(() => {
+                            const angle = (i / count) * Math.PI * 2;
+                            const distance = 30 + Math.random() * 40;
+                            const offsetX = Math.cos(angle) * distance;
+                            const offsetY = Math.sin(angle) * distance;
+                            const size = 60 + Math.random() * 50;
+                            this.createSingleWave(x + offsetX, y + offsetY, size);
+                        }, i * 50);
+                    }
+                }
+                
+                updateTrail() {
+                    if (!this.state.isActive || !this.state.isMouseOver) return;
+                    
+                    this.state.trail.unshift({
+                        x: this.state.smoothX,
+                        y: this.state.smoothY,
+                        size: this.calculateRevealSize(),
+                        time: Date.now()
+                    });
+                    
+                    const now = Date.now();
+                    this.state.trail = this.state.trail.filter(point => 
+                        (now - point.time) < 1200 && 
+                        point.x >= 0 && point.y >= 0
+                    );
+                    
+                    if (this.state.trail.length > this.config.trailLength) {
+                        this.state.trail = this.state.trail.slice(0, this.config.trailLength);
+                    }
+                }
+                
+                calculateRevealSize() {
+                    const base = this.config.baseRevealSize;
+                    const velocityFactor = this.state.velocity * 8;
+                    return Math.min(base + velocityFactor, this.config.maxRevealSize);
+                }
+                
+                applyMask() {
+                    if (!this.state.isActive || !this.state.isMouseOver) {
+                        if (this.backImage.style.opacity !== '0') {
+                            this.backImage.style.opacity = '0';
+                        }
+                        this.backImage.style.maskImage = 'none';
+                        this.backImage.style.webkitMaskImage = 'none';
+                        this.distortionGrid.style.opacity = '0';
+                        return;
+                    }
+                    
+                    let masks = [];
+                    const now = Date.now();
+                    
+                    if (this.state.trail.length > 0) {
+                        this.state.trail.forEach((point, index) => {
+                            const age = (now - point.time) / 1200;
+                            const progress = index / this.state.trail.length;
+                            const size = point.size * (1 - progress * 0.4);
+                            const opacity = Math.max(
+                                0.08,
+                                this.config.minOpacity + 
+                                (this.config.maxOpacity - this.config.minOpacity) * 
+                                (1 - progress) * (1 - age * 0.4)
+                            );
+                            
+                            if (opacity > 0.08 && size > 30) {
+                                masks.push(`
+                                    radial-gradient(
+                                        circle ${size}px at ${point.x}px ${point.y}px,
+                                        rgba(0, 0, 0, ${opacity}) 0%,
+                                        rgba(0, 0, 0, ${opacity * 0.1}) 40%,
+                                        transparent 60%
+                                    )
+                                `);
+                            }
+                        });
+                    }
+                    
+                    if (masks.length > 0) {
+                        const maskValue = masks.join(', ');
+                        this.backImage.style.maskImage = maskValue;
+                        this.backImage.style.webkitMaskImage = maskValue;
+                        
+                        const distortion = Math.min(this.state.velocity * this.config.distortionIntensity, 0.25);
+                        this.distortionGrid.style.opacity = distortion.toString();
+                    } else {
+                        this.backImage.style.maskImage = 'none';
+                        this.backImage.style.webkitMaskImage = 'none';
+                        this.distortionGrid.style.opacity = '0';
+                    }
+                }
+                
+                updateCursor() {
+                    if (!this.state.isActive || !this.state.isMouseOver) return;
+                    
+                    const diffX = this.state.mouseX - this.state.smoothX;
+                    const diffY = this.state.mouseY - this.state.smoothY;
+                    
+                    const currentSmoothness = Math.min(this.config.smoothness + (this.state.velocity * 0.008), 0.2);
+                    
+                    this.state.smoothX += diffX * currentSmoothness;
+                    this.state.smoothY += diffY * currentSmoothness;
+                    
+                    this.waterCursor.style.left = `${this.state.smoothX}px`;
+                    this.waterCursor.style.top = `${this.state.smoothY}px`;
+                    this.cursorHalo.style.left = `${this.state.smoothX}px`;
+                    this.cursorHalo.style.top = `${this.state.smoothY}px`;
+                    
+                    const baseScale = 1;
+                    const velocityScale = this.state.velocity * 0.015;
+                    const cursorScale = Math.min(baseScale + velocityScale, 1.8);
+                    this.waterCursor.style.transform = `translate(-50%, -50%) scale(${cursorScale})`;
+                    
+                    const haloScale = 2.2 + (this.state.velocity * 0.015);
+                    this.cursorHalo.style.transform = `translate(-50%, -50%) scale(${haloScale})`;
+                    
+                    const intensity = Math.min(this.state.velocity * 0.04, 0.4);
+                    this.waterCursor.style.borderColor = `rgba(173, 216, 230, ${0.3 + intensity})`;
+                    this.waterCursor.style.boxShadow = 
+                        `0 0 ${25 + intensity * 10}px rgba(255, 255, 255, ${0.12 + intensity * 0.1}),
+                         0 0 ${50 + intensity * 20}px rgba(173, 216, 230, ${0.08 + intensity * 0.05})`;
+                }
+                
+                startAnimation() {
+                    if (this.state.isAnimating) return;
+                    
+                    this.state.isAnimating = true;
+                    
+                    const animate = () => {
+                        if (!this.state.isAnimating) return;
+                        
+                        this.updateCursor();
+                        this.updateTrail();
+                        this.applyMask();
+                        
+                        this.state.animationId = requestAnimationFrame(animate);
+                    };
+                    
+                    animate();
+                }
+                
+                stopAnimation() {
+                    this.state.isAnimating = false;
+                    if (this.state.animationId) {
+                        cancelAnimationFrame(this.state.animationId);
+                        this.state.animationId = null;
+                    }
+                }
+                
+                destroy() {
+                    this.stopAnimation();
+                    this.state.trail = [];
+                    this.waterCursor.style.opacity = '0';
+                    this.cursorHalo.style.opacity = '0';
+                    this.distortionGrid.style.opacity = '0';
+                    this.backImage.style.opacity = '0';
+                }
+            }
+            
+            // Sistema da Galeria Simples
+            class GallerySystem {
+                constructor() {
+                    this.galleryItems = document.querySelectorAll('.gallery-item');
+                    this.lightboxModal = document.getElementById('lightboxModal');
+                    this.lightboxImage = document.getElementById('lightboxImage');
+                    this.lightboxTitle = document.getElementById('lightboxTitle');
+                    this.lightboxDescription = document.getElementById('lightboxDescription');
+                    this.prevButton = document.getElementById('prevButton');
+                    this.nextButton = document.getElementById('nextButton');
+                    this.closeLightbox = document.getElementById('closeLightbox');
+                    
+                    this.currentIndex = 0;
+                    
+                    this.init();
+                }
+                
+                init() {
+                    this.setupEventListeners();
+                }
+                
+                setupEventListeners() {
+                    // Clique nas imagens
+                    this.galleryItems.forEach((item, index) => {
+                        item.addEventListener('click', () => {
+                            this.openLightbox(index);
+                        });
+                    });
+                    
+                    // Navegação do lightbox
+                    this.prevButton.addEventListener('click', () => {
+                        this.navigateLightbox(-1);
+                    });
+                    
+                    this.nextButton.addEventListener('click', () => {
+                        this.navigateLightbox(1);
+                    });
+                    
+                    // Fechar lightbox
+                    this.closeLightbox.addEventListener('click', () => {
+                        this.closeLightboxModal();
+                    });
+                    
+                    // Fechar com ESC
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && this.lightboxModal.classList.contains('active')) {
+                            this.closeLightboxModal();
+                        }
+                        if (e.key === 'ArrowLeft' && this.lightboxModal.classList.contains('active')) {
+                            this.navigateLightbox(-1);
+                        }
+                        if (e.key === 'ArrowRight' && this.lightboxModal.classList.contains('active')) {
+                            this.navigateLightbox(1);
+                        }
+                    });
+                    
+                    // Fechar ao clicar fora da imagem
+                    this.lightboxModal.addEventListener('click', (e) => {
+                        if (e.target === this.lightboxModal) {
+                            this.closeLightboxModal();
+                        }
+                    });
+                }
+                
+                openLightbox(index) {
+                    this.currentIndex = index;
+                    const item = this.galleryItems[index];
+                    
+                    if (!item) return;
+                    
+                    const image = item.querySelector('.gallery-image');
+                    const caption = item.querySelector('.gallery-caption');
+                    const date = item.querySelector('.gallery-date');
+                    
+                    this.lightboxImage.src = image.src;
+                    this.lightboxTitle.textContent = caption.textContent;
+                    this.lightboxDescription.textContent = date.textContent;
+                    
+                    this.lightboxModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animação de entrada
+                    setTimeout(() => {
+                        this.lightboxModal.style.opacity = '1';
+                    }, 10);
+                }
+                
+                navigateLightbox(direction) {
+                    this.currentIndex += direction;
+                    
+                    // Loop circular
+                    if (this.currentIndex < 0) {
+                        this.currentIndex = this.galleryItems.length - 1;
+                    } else if (this.currentIndex >= this.galleryItems.length) {
+                        this.currentIndex = 0;
+                    }
+                    
+                    const item = this.galleryItems[this.currentIndex];
+                    const image = item.querySelector('.gallery-image');
+                    const caption = item.querySelector('.gallery-caption');
+                    const date = item.querySelector('.gallery-date');
+                    
+                    // Animação de transição
+                    this.lightboxImage.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        this.lightboxImage.src = image.src;
+                        this.lightboxTitle.textContent = caption.textContent;
+                        this.lightboxDescription.textContent = date.textContent;
+                        
+                        this.lightboxImage.style.opacity = '1';
+                    }, 300);
+                }
+                
+                closeLightboxModal() {
+                    this.lightboxModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    setTimeout(() => {
+                        this.lightboxModal.style.opacity = '0';
+                    }, 300);
+                }
+            }
+            
+            // Sistema do Footer
+            class FooterSystem {
+                constructor() {
+                    this.init();
+                }
+                
+                init() {
+                    this.updateCurrentYear();
+                    this.setupEventListeners();
+                    this.initScrollReveal();
+                }
+                
+                updateCurrentYear() {
+                    document.getElementById('currentYear').textContent = new Date().getFullYear();
+                }
+                
+                setupEventListeners() {
+                    // Link para mostrar a doação
+                    document.querySelectorAll('.show-donation').forEach(link => {
+                        link.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            document.getElementById('supportButton').click();
+                        });
+                    });
+                    
+                    // Newsletter submit
+                    const newsletterForm = document.querySelector('.newsletter-form');
+                    const newsletterInput = document.querySelector('.newsletter-input');
+                    const newsletterButton = document.querySelector('.newsletter-button');
+                    
+                    const submitNewsletter = () => {
+                        const email = newsletterInput.value.trim();
+                        if (email && this.validateEmail(email)) {
+                            // Simulação de envio
+                            newsletterButton.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                            newsletterButton.style.background = '#2ecc71';
+                            newsletterInput.value = '';
+                            
+                            setTimeout(() => {
+                                newsletterButton.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+                                newsletterButton.style.background = '';
+                            }, 3000);
+                        } else {
+                            newsletterInput.style.borderColor = '#ff4757';
+                            newsletterInput.focus();
+                            
+                            setTimeout(() => {
+                                newsletterInput.style.borderColor = '';
+                            }, 2000);
+                        }
+                    };
+                    
+                    if (newsletterButton) {
+                        newsletterButton.addEventListener('click', submitNewsletter);
+                    }
+                    
+                    if (newsletterInput) {
+                        newsletterInput.addEventListener('keypress', (e) => {
+                            if (e.key === 'Enter') {
+                                submitNewsletter();
+                            }
+                        });
+                    }
+                    
+                    // Links suaves
+                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                        anchor.addEventListener('click', function (e) {
+                            const href = this.getAttribute('href');
+                            
+                            if (href === '#') return;
+                            
+                            e.preventDefault();
+                            const targetElement = document.querySelector(href);
+                            
+                            if (targetElement) {
+                                window.scrollTo({
+                                    top: targetElement.offsetTop - 80,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    });
+                }
+                
+                validateEmail(email) {
+                    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return re.test(email);
+                }
+                
+                initScrollReveal() {
+                    const observerOptions = {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    };
+                    
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animated');
+                            }
+                        });
+                    }, observerOptions);
+                    
+                    document.querySelectorAll('.footer-section').forEach(section => {
+                        observer.observe(section);
+                    });
+                }
+            }
+            
+            // Sistema de Planos de Governo
+            class PlansSystem {
+                constructor() {
+                    this.downloadPlan = document.getElementById('downloadPlan');
+                    this.sharePlan = document.getElementById('sharePlan');
+                    this.planModal = document.getElementById('planModal');
+                    this.closeModal = document.getElementById('closeModal');
+                    this.tabButtons = document.querySelectorAll('.tab-button');
+                    this.tabContents = document.querySelectorAll('.tab-content');
+                    
+                    this.init();
+                }
+                
+                init() {
+                    this.setupEventListeners();
+                    this.setupAnimations();
+                }
+                
+                setupEventListeners() {
+                    // Botão de download
+                    this.downloadPlan.addEventListener('click', () => {
+                        this.showPlanModal();
+                    });
+                    
+                    // Botão de compartilhar
+                    this.sharePlan.addEventListener('click', () => {
+                        this.sharePlans();
+                    });
+                    
+                    // Fechar modal
+                    this.closeModal.addEventListener('click', () => {
+                        this.closePlanModal();
+                    });
+                    
+                    // Fechar modal ao clicar fora
+                    this.planModal.addEventListener('click', (e) => {
+                        if (e.target === this.planModal) {
+                            this.closePlanModal();
+                        }
+                    });
+                    
+                    // Tabs do modal
+                    this.tabButtons.forEach(button => {
+                        button.addEventListener('click', () => {
+                            const tabId = button.getAttribute('data-tab');
+                            this.switchTab(tabId, button);
+                        });
+                    });
+                    
+                    // Fechar com ESC
+                    document.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape' && this.planModal.classList.contains('active')) {
+                            this.closePlanModal();
+                        }
+                    });
+                }
+                
+                setupAnimations() {
+                    // Animar cards ao scroll
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animated');
+                            }
+                        });
+                    }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+                    
+                    document.querySelectorAll('.plan-card').forEach(card => {
+                        observer.observe(card);
+                    });
+                }
+                
+                showPlanModal() {
+                    this.planModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animação de entrada
+                    setTimeout(() => {
+                        this.planModal.style.opacity = '1';
+                    }, 10);
+                }
+                
+                closePlanModal() {
+                    this.planModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    
+                    setTimeout(() => {
+                        this.planModal.style.opacity = '0';
+                    }, 300);
+                }
+                
+                switchTab(tabId, clickedButton) {
+                    // Remover classe active de todos os botões e conteúdos
+                    this.tabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Adicionar classe active ao botão clicado
+                    clickedButton.classList.add('active');
+                    
+                    // Mostrar conteúdo correspondente
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                }
+                
+                sharePlans() {
+                    const shareData = {
+                        title: 'Plano de Governo MAG 2026',
+                        text: 'Conheça o plano completo para o Senado!',
+                        url: window.location.href + '#plans-section'
+                    };
+                    
+                    if (navigator.share) {
+                        navigator.share(shareData)
+                            .then(() => console.log('Compartilhado com sucesso!'))
+                            .catch(error => console.log('Erro ao compartilhar:', error));
+                    } else {
+                        // Fallback para copiar link
+                        navigator.clipboard.writeText(shareData.url)
+                            .then(() => {
+                                const originalText = this.sharePlan.innerHTML;
+                                this.sharePlan.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Link copiado!';
+                                
+                                setTimeout(() => {
+                                    this.sharePlan.innerHTML = originalText;
+                                }, 3000);
+                            })
+                            .catch(err => {
+                                console.error('Erro ao copiar:', err);
+                            });
+                    }
+                }
+            }
+            
+            // Inicializar tudo quando o DOM estiver carregado
+            document.addEventListener('DOMContentLoaded', () => {
+                const waterEffect = new WaterEffect();
+                const donationSystem = new DonationSystem();
+                const musicSystem = new MusicSystem();
+                const gallerySystem = new GallerySystem();
+                const footerSystem = new FooterSystem();
+                const plansSystem = new PlansSystem();
+                
+                window.addEventListener('beforeunload', () => {
+                    waterEffect.destroy();
+                });
+                
+                // Salvar referências para debug se necessário
+                window.waterEffectInstance = waterEffect;
+                window.donationSystem = donationSystem;
+                window.musicSystem = musicSystem;
+                window.gallerySystem = gallerySystem;
+                window.footerSystem = footerSystem;
+                window.plansSystem = plansSystem;
+            });
+        }
+    </script>
+</body>
+</html>
