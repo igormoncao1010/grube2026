@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAG 2026 - Pré-candidato ao Senado</title>
+    <title>Breno Grube 2026 - Deputado Federal por Minas Gerais</title>
     <link rel="icon" type="image/png" sizes="32x32" href="icone.png">
     <style>
         * {
@@ -28,9 +28,18 @@
             flex: 1;
         }
 
+        /* Cores temáticas - Azul Justiça */
+        :root {
+            --primary: #1e3c72;
+            --primary-light: #2a4a8a;
+            --primary-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+            --accent: #c9a227;
+            --accent-light: #dbb042;
+        }
+
         /* Menu Styles */
         .menu {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(10, 25, 47, 0.95);
             padding: 16px 32px;
             position: fixed;
             width: 100%;
@@ -38,25 +47,19 @@
             z-index: 1000;
             backdrop-filter: blur(25px) saturate(180%);
             -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
             box-shadow: 
-                0 4px 30px rgba(0, 0, 0, 0.15),
-                0 1px 0 rgba(255, 255, 255, 0.03) inset,
-                0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+                0 4px 30px rgba(0, 0, 0, 0.3),
+                0 1px 0 rgba(201, 162, 39, 0.1) inset;
             
             background-image: 
                 linear-gradient(to right, 
-                    rgba(255, 255, 255, 0.05) 0%,
-                    rgba(255, 255, 255, 0.02) 50%,
-                    rgba(255, 255, 255, 0.05) 100%),
+                    rgba(201, 162, 39, 0.05) 0%,
+                    rgba(201, 162, 39, 0.02) 50%,
+                    rgba(201, 162, 39, 0.05) 100%),
                 radial-gradient(
                     circle at 20% 50%,
-                    rgba(173, 216, 230, 0.08) 0%,
-                    transparent 60%
-                ),
-                radial-gradient(
-                    circle at 80% 50%,
-                    rgba(173, 216, 230, 0.06) 0%,
+                    rgba(30, 60, 114, 0.3) 0%,
                     transparent 60%
                 );
         }
@@ -93,7 +96,7 @@
             background: linear-gradient(
                 to bottom,
                 transparent,
-                rgba(255, 255, 255, 0.2),
+                rgba(201, 162, 39, 0.3),
                 transparent
             );
         }
@@ -109,12 +112,12 @@
         .logo-image img {
             height: 100%;
             width: auto;
-            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(30, 144, 255, 0.3));
+            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(201, 162, 39, 0.3));
             transition: all 0.3s ease;
         }
 
         .logo:hover .logo-image img {
-            filter: brightness(1.2) drop-shadow(0 6px 20px rgba(30, 144, 255, 0.4));
+            filter: brightness(1.2) drop-shadow(0 6px 20px rgba(201, 162, 39, 0.4));
             transform: scale(1.05);
         }
 
@@ -127,7 +130,7 @@
         /* Botão de Pause/Play da Música */
         .music-button {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             color: rgba(255, 255, 255, 0.9);
             width: 44px;
             height: 44px;
@@ -143,15 +146,15 @@
         }
 
         .music-button:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(201, 162, 39, 0.15);
+            border-color: rgba(201, 162, 39, 0.5);
             transform: translateY(-1px);
         }
 
         .music-button.playing {
-            background: rgba(30, 144, 255, 0.2);
-            border-color: rgba(30, 144, 255, 0.4);
-            color: #1e90ff;
+            background: rgba(201, 162, 39, 0.2);
+            border-color: rgba(201, 162, 39, 0.5);
+            color: #c9a227;
         }
 
         .music-button.playing::after {
@@ -163,7 +166,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            border: 2px solid rgba(30, 144, 255, 0.3);
+            border: 2px solid rgba(201, 162, 39, 0.3);
             animation: pulseMusic 2s infinite;
         }
 
@@ -181,7 +184,7 @@
         }
 
         .pulse-button {
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            background: var(--primary-gradient);
             color: white;
             border: none;
             padding: 14px 32px;
@@ -195,8 +198,8 @@
             overflow: hidden;
             z-index: 1;
             box-shadow: 
-                0 8px 25px rgba(30, 144, 255, 0.3),
-                0 4px 15px rgba(30, 144, 255, 0.2),
+                0 8px 25px rgba(30, 60, 114, 0.4),
+                0 4px 15px rgba(201, 162, 39, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             
             background-image: 
@@ -210,60 +213,35 @@
         .pulse-button:hover {
             transform: translateY(-2px);
             box-shadow: 
-                0 12px 35px rgba(30, 144, 255, 0.4),
-                0 6px 20px rgba(30, 144, 255, 0.25),
+                0 12px 35px rgba(30, 60, 114, 0.5),
+                0 6px 20px rgba(201, 162, 39, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            background: linear-gradient(135deg, #3498ff, #4a7de8);
         }
 
         .pulse-button:active {
             transform: translateY(0);
             box-shadow: 
-                0 4px 15px rgba(30, 144, 255, 0.3),
-                0 2px 8px rgba(30, 144, 255, 0.2),
+                0 4px 15px rgba(30, 60, 114, 0.3),
+                0 2px 8px rgba(201, 162, 39, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
         }
 
         @keyframes pulse {
             0% {
                 box-shadow: 
-                    0 8px 25px rgba(30, 144, 255, 0.3),
-                    0 4px 15px rgba(30, 144, 255, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    0 8px 25px rgba(30, 60, 114, 0.4),
+                    0 4px 15px rgba(201, 162, 39, 0.2);
             }
             50% {
                 box-shadow: 
-                    0 8px 30px rgba(30, 144, 255, 0.4),
-                    0 4px 20px rgba(30, 144, 255, 0.3),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+                    0 8px 30px rgba(30, 60, 114, 0.5),
+                    0 4px 20px rgba(201, 162, 39, 0.3);
             }
             100% {
                 box-shadow: 
-                    0 8px 25px rgba(30, 144, 255, 0.3),
-                    0 4px 15px rgba(30, 144, 255, 0.2),
-                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                    0 8px 25px rgba(30, 60, 114, 0.4),
+                    0 4px 15px rgba(201, 162, 39, 0.2);
             }
-        }
-
-        .pulse-button::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(
-                circle,
-                rgba(255, 255, 255, 0.1) 0%,
-                transparent 70%
-            );
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .pulse-button:hover::before {
-            opacity: 1;
         }
 
         .pulse-button {
@@ -292,7 +270,7 @@
         }
 
         .donation-popup {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(10, 25, 47, 0.95);
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
             border-radius: 24px;
@@ -300,10 +278,10 @@
             width: 90%;
             max-width: 500px;
             max-height: 85vh;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 8px 30px rgba(0, 0, 0, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 8px 30px rgba(201, 162, 39, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             transform: translateY(30px) scale(0.95);
@@ -326,7 +304,7 @@
             height: 1px;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(255, 255, 255, 0.3), 
+                rgba(201, 162, 39, 0.5), 
                 transparent);
         }
 
@@ -340,7 +318,7 @@
         @media (min-width: 769px) {
             .popup-content {
                 scrollbar-width: thin;
-                scrollbar-color: rgba(30, 144, 255, 0.5) rgba(255, 255, 255, 0.1);
+                scrollbar-color: rgba(201, 162, 39, 0.5) rgba(255, 255, 255, 0.1);
             }
 
             .popup-content::-webkit-scrollbar {
@@ -353,13 +331,13 @@
             }
 
             .popup-content::-webkit-scrollbar-thumb {
-                background: rgba(30, 144, 255, 0.5);
+                background: rgba(201, 162, 39, 0.5);
                 border-radius: 4px;
                 transition: background 0.3s ease;
             }
 
             .popup-content::-webkit-scrollbar-thumb:hover {
-                background: rgba(30, 144, 255, 0.7);
+                background: rgba(201, 162, 39, 0.7);
             }
         }
 
@@ -389,7 +367,7 @@
             padding: 25px;
             text-align: center;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
             flex-shrink: 0;
         }
@@ -398,7 +376,7 @@
             width: 220px;
             height: 220px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            background: var(--primary-gradient);
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -414,7 +392,7 @@
             height: 300%;
             background: linear-gradient(45deg, 
                 transparent 30%, 
-                rgba(255, 255, 255, 0.1) 50%, 
+                rgba(201, 162, 39, 0.2) 50%, 
                 transparent 70%);
             animation: shine 2s infinite linear;
         }
@@ -439,7 +417,7 @@
             border-radius: 12px;
             padding: 18px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             flex-shrink: 0;
         }
 
@@ -465,7 +443,7 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 14px;
             letter-spacing: 0.5px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             overflow-x: auto;
             white-space: nowrap;
             min-height: 44px;
@@ -474,8 +452,8 @@
         }
 
         .copy-button {
-            background: rgba(30, 144, 255, 0.2);
-            border: 1px solid rgba(30, 144, 255, 0.4);
+            background: rgba(201, 162, 39, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.4);
             color: rgba(255, 255, 255, 0.9);
             padding: 10px 18px;
             border-radius: 8px;
@@ -490,8 +468,8 @@
         }
 
         .copy-button:hover {
-            background: rgba(30, 144, 255, 0.3);
-            border-color: rgba(30, 144, 255, 0.6);
+            background: rgba(201, 162, 39, 0.25);
+            border-color: rgba(201, 162, 39, 0.6);
             transform: translateY(-1px);
         }
 
@@ -507,13 +485,13 @@
             margin-top: auto;
             flex-shrink: 0;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
         }
 
         .close-button {
             flex: 1;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             color: rgba(255, 255, 255, 0.9);
             padding: 14px;
             border-radius: 12px;
@@ -525,7 +503,7 @@
 
         .close-button:hover {
             background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
+            border-color: rgba(201, 162, 39, 0.3);
             transform: translateY(-1px);
         }
 
@@ -534,7 +512,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) scale(0.8);
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(10, 25, 47, 0.95);
             backdrop-filter: blur(30px) saturate(180%);
             -webkit-backdrop-filter: blur(30px) saturate(180%);
             border-radius: 20px;
@@ -542,10 +520,10 @@
             max-width: 400px;
             width: 90%;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                0 8px 30px rgba(0, 0, 0, 0.3),
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 8px 30px rgba(201, 162, 39, 0.2),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
             z-index: 2001;
             opacity: 0;
@@ -580,7 +558,7 @@
         }
 
         .thank-you-close {
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            background: var(--primary-gradient);
             color: white;
             border: none;
             padding: 12px 30px;
@@ -594,7 +572,7 @@
 
         .thank-you-close:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.3);
         }
 
         @keyframes shine {
@@ -628,7 +606,7 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(201, 162, 39, 0.2);
             border-radius: 50%;
             animation: particleFloat 20s infinite linear;
         }
@@ -692,8 +670,8 @@
             position: absolute;
             border-radius: 50%;
             background: radial-gradient(circle, 
-                rgba(255, 255, 255, 0.15) 0%, 
-                rgba(255, 255, 255, 0.08) 30%, 
+                rgba(201, 162, 39, 0.15) 0%, 
+                rgba(201, 162, 39, 0.08) 30%, 
                 transparent 70%);
             pointer-events: none;
             z-index: 3;
@@ -721,10 +699,10 @@
             height: 60px;
             border-radius: 50%;
             background: radial-gradient(circle, 
-                rgba(255, 255, 255, 0.08) 0%, 
-                rgba(255, 255, 255, 0.05) 30%, 
+                rgba(201, 162, 39, 0.08) 0%, 
+                rgba(201, 162, 39, 0.05) 30%, 
                 transparent 70%);
-            border: 2.5px solid rgba(255, 255, 255, 0.25);
+            border: 2.5px solid rgba(201, 162, 39, 0.3);
             pointer-events: none;
             z-index: 1000;
             transform: translate(-50%, -50%) scale(1);
@@ -735,8 +713,8 @@
             mix-blend-mode: plus-lighter;
             filter: blur(1px);
             box-shadow: 
-                0 0 25px rgba(255, 255, 255, 0.12),
-                0 0 50px rgba(173, 216, 230, 0.08);
+                0 0 25px rgba(201, 162, 39, 0.2),
+                0 0 50px rgba(30, 60, 114, 0.2);
         }
 
         .cursor-halo {
@@ -750,10 +728,10 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             background: radial-gradient(circle, 
-                rgba(173, 216, 230, 0.12) 0%,
-                rgba(173, 216, 230, 0.05) 40%,
+                rgba(201, 162, 39, 0.12) 0%,
+                rgba(201, 162, 39, 0.05) 40%,
                 transparent 70%);
-            border: 2px solid rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(201, 162, 39, 0.08);
             filter: blur(1px);
         }
 
@@ -764,8 +742,8 @@
             width: 100%;
             height: 100%;
             background: 
-                linear-gradient(90deg, transparent 49%, rgba(255,255,255,0.01) 50%, transparent 51%),
-                linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.01) 50%, transparent 51%);
+                linear-gradient(90deg, transparent 49%, rgba(201,162,39,0.02) 50%, transparent 51%),
+                linear-gradient(0deg, transparent 49%, rgba(201,162,39,0.02) 50%, transparent 51%);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: 4;
@@ -857,150 +835,171 @@
             -webkit-user-select: none;
         }
 
-        /* SEÇÃO - MAG */
+        /* SEÇÃO - BRENO GRUBE */
         .humans-section {
-            background: rgba(240, 242, 245, 0.95);
-            padding: 60px 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf0 100%);
+            padding: 80px 20px;
             position: relative;
             z-index: 5;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-top: 1px solid rgba(30, 60, 114, 0.1);
             min-height: auto;
         }
 
         .humans-container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .humans-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         .humans-name {
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #2c3e50;
+            font-size: 3rem;
+            font-weight: 500;
+            color: #1e3c72;
             margin-bottom: 8px;
             line-height: 1.2;
+            letter-spacing: -0.5px;
         }
 
         .humans-subtitle {
-            font-size: 1rem;
-            color: #7f8c8d;
-            font-style: italic;
-            margin-bottom: 25px;
+            font-size: 1.2rem;
+            color: #c9a227;
+            font-weight: 400;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .humans-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
         }
 
         .humans-quote {
-            max-width: 600px;
-            margin: 0 auto 30px;
-            padding: 20px;
-            border-left: 3px solid #1e90ff;
-            background: rgba(30, 144, 255, 0.05);
-            border-radius: 6px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            padding: 30px;
+            border-left: 4px solid #c9a227;
+            background: white;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
         }
 
         .humans-quote-text {
-            font-size: 1.1rem;
-            color: #34495e;
-            line-height: 1.6;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            line-height: 1.7;
             font-weight: 400;
             font-style: italic;
         }
 
         .humans-quote-author {
             color: #7f8c8d;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             text-align: right;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .humans-content {
-            color: #4a5568;
-            line-height: 1.7;
-            font-size: 1.05rem;
+            color: #2c3e50;
+            line-height: 1.8;
+            font-size: 1.1rem;
             font-weight: 400;
         }
 
         .humans-content p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: justify;
         }
 
         .humans-highlight {
-            color: #2c3e50;
+            color: #1e3c72;
             font-weight: 500;
-            border-left: 3px solid #1e90ff;
-            padding-left: 15px;
-            margin: 25px 0;
+            border-left: 4px solid #c9a227;
+            padding-left: 25px;
+            margin: 30px 0;
             font-style: italic;
-            background: rgba(30, 144, 255, 0.05);
-            padding: 15px;
-            border-radius: 0 4px 4px 0;
+            background: white;
+            padding: 25px;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
         }
 
         .humans-qualities {
-            margin-top: 35px;
+            margin-top: 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
         }
 
         .humans-quality {
-            padding: 18px;
+            padding: 25px;
             background: white;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            border: 1px solid rgba(30, 60, 114, 0.1);
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
         }
 
         .humans-quality:hover {
             background: #f8f9fa;
-            border-color: rgba(30, 144, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #c9a227;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(201, 162, 39, 0.15);
         }
 
         .humans-quality-title {
-            font-size: 1rem;
-            color: #2c3e50;
-            margin-bottom: 6px;
+            font-size: 1.1rem;
+            color: #1e3c72;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .humans-quality-desc {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #5d6d7e;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .humans-signature {
             text-align: right;
-            margin-top: 30px;
+            margin-top: 40px;
             color: #7f8c8d;
             font-style: italic;
-            font-size: 0.95rem;
-            padding-top: 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1rem;
+            padding-top: 25px;
+            border-top: 2px solid rgba(201, 162, 39, 0.2);
         }
 
         @media (max-width: 768px) {
             .humans-section {
-                padding: 40px 20px;
+                padding: 60px 20px;
             }
             
             .humans-name {
-                font-size: 1.8rem;
+                font-size: 2.4rem;
+            }
+            
+            .humans-subtitle {
+                font-size: 1rem;
             }
             
             .humans-quote {
-                padding: 15px;
+                padding: 20px;
             }
             
             .humans-quote-text {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
             
             .humans-content {
@@ -1009,22 +1008,322 @@
             
             .humans-qualities {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                gap: 15px;
             }
         }
 
         @media (max-width: 480px) {
             .humans-name {
-                font-size: 1.6rem;
-            }
-            
-            .humans-subtitle {
-                font-size: 0.95rem;
+                font-size: 2rem;
             }
             
             .humans-content {
                 font-size: 0.95rem;
             }
+        }
+
+        /* SEÇÃO DE PLANOS - DEPUTADO FEDERAL */
+        .plans-section {
+            background: linear-gradient(135deg, #0a1929 0%, #0c2340 100%);
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .plans-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.5), transparent);
+        }
+
+        .plans-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .plans-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .plans-title {
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.5px;
+        }
+
+        .plans-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #c9a227);
+            border-radius: 2px;
+        }
+
+        .plans-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 30px auto 0;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .plan-card:nth-child(1) { animation-delay: 0.1s; }
+        .plan-card:nth-child(2) { animation-delay: 0.2s; }
+        .plan-card:nth-child(3) { animation-delay: 0.3s; }
+        .plan-card:nth-child(4) { animation-delay: 0.4s; }
+        .plan-card:nth-child(5) { animation-delay: 0.5s; }
+        .plan-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #c9a227;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(201, 162, 39, 0.3),
+                0 8px 30px rgba(201, 162, 39, 0.15);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1e3c72, #c9a227);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .plan-card:hover::before {
+            opacity: 1;
+        }
+
+        .plan-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 162, 39, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .plan-icon svg {
+            width: 30px;
+            height: 30px;
+            color: #c9a227;
+        }
+
+        .plan-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+            line-height: 1.5;
+        }
+
+        .plan-features li::before {
+            content: '⚖️';
+            position: absolute;
+            left: 0;
+            color: #c9a227;
+            font-size: 14px;
+        }
+
+        .plan-metrics {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+        }
+
+        .metric {
+            text-align: center;
+            flex: 1;
+        }
+
+        .metric-value {
+            display: block;
+            color: #c9a227;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+        }
+
+        /* Resumo dos Planos */
+        .plans-summary {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(201, 162, 39, 0.2);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            animation-delay: 0.7s;
+        }
+
+        .summary-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .summary-title {
+            color: white;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 25px;
+        }
+
+        .summary-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .summary-text strong {
+            color: #c9a227;
+            font-weight: 500;
+        }
+
+        .summary-metrics {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .summary-metric {
+            text-align: center;
+            min-width: 150px;
+        }
+
+        .summary-value {
+            display: block;
+            color: #c9a227;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .summary-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.95rem;
+        }
+
+        .summary-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .download-plan, .share-plan {
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .download-plan {
+            background: var(--primary-gradient);
+            color: white;
+            box-shadow: 0 8px 25px rgba(30, 60, 114, 0.4);
+        }
+
+        .download-plan:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(30, 60, 114, 0.5);
+        }
+
+        .share-plan {
+            background: rgba(201, 162, 39, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+        }
+
+        .share-plan:hover {
+            background: rgba(201, 162, 39, 0.25);
+            border-color: rgba(201, 162, 39, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .download-plan svg, .share-plan svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
         }
 
         /* GALERIA DE FOTOS SIMPLES */
@@ -1064,7 +1363,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            background: linear-gradient(90deg, #1e3c72, #c9a227);
             border-radius: 2px;
         }
 
@@ -1091,14 +1390,14 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             aspect-ratio: 4/3;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-item:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 60px rgba(30, 144, 255, 0.3);
-            border-color: rgba(30, 144, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(201, 162, 39, 0.3);
+            border-color: rgba(201, 162, 39, 0.4);
         }
 
         .gallery-image {
@@ -1181,6 +1480,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(201, 162, 39, 0.3);
         }
 
         .lightbox-image {
@@ -1195,7 +1495,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
             padding: 20px;
             color: white;
             text-align: center;
@@ -1224,8 +1524,8 @@
         }
 
         .lightbox-button {
-            background: rgba(30, 144, 255, 0.3);
-            border: 1px solid rgba(30, 144, 255, 0.5);
+            background: rgba(201, 162, 39, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.4);
             color: white;
             width: 50px;
             height: 50px;
@@ -1241,8 +1541,8 @@
         }
 
         .lightbox-button:hover {
-            background: rgba(30, 144, 255, 0.5);
-            border-color: rgba(30, 144, 255, 0.8);
+            background: rgba(201, 162, 39, 0.4);
+            border-color: rgba(201, 162, 39, 0.6);
             transform: scale(1.1);
         }
 
@@ -1251,7 +1551,7 @@
             top: 20px;
             right: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             color: white;
             width: 40px;
             height: 40px;
@@ -1266,8 +1566,8 @@
         }
 
         .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(201, 162, 39, 0.2);
+            border-color: rgba(201, 162, 39, 0.5);
             transform: rotate(90deg);
         }
 
@@ -1313,9 +1613,9 @@
 
         /* FOOTER ELEGANTE */
         .site-footer {
-            background: rgba(15, 15, 20, 0.95);
+            background: rgba(10, 20, 30, 0.95);
             position: relative;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
             margin-top: 60px;
             overflow: hidden;
             backdrop-filter: blur(15px);
@@ -1356,7 +1656,7 @@
 
         .footer-logo img {
             height: 32px;
-            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(30, 144, 255, 0.3));
+            filter: brightness(1.1) drop-shadow(0 4px 15px rgba(201, 162, 39, 0.3));
         }
 
         .footer-logo span {
@@ -1388,21 +1688,22 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             color: rgba(255, 255, 255, 0.7);
         }
 
         .social-icon svg {
             width: 18px;
             height: 18px;
+            fill: currentColor;
         }
 
         .social-icon:hover {
-            background: rgba(30, 144, 255, 0.2);
-            border-color: rgba(30, 144, 255, 0.4);
-            color: rgba(255, 255, 255, 0.95);
+            background: rgba(201, 162, 39, 0.15);
+            border-color: rgba(201, 162, 39, 0.4);
+            color: #c9a227;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.2);
         }
 
         .footer-title {
@@ -1421,7 +1722,7 @@
             left: 0;
             width: 40px;
             height: 2px;
-            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            background: linear-gradient(90deg, #1e3c72, #c9a227);
             border-radius: 2px;
         }
 
@@ -1450,7 +1751,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: linear-gradient(90deg, #1e90ff, #4169e1);
+            background: linear-gradient(90deg, #1e3c72, #c9a227);
             transition: width 0.3s ease;
         }
 
@@ -1480,7 +1781,8 @@
         .footer-contact li svg {
             width: 18px;
             height: 18px;
-            color: #1e90ff;
+            color: #c9a227;
+            fill: currentColor;
             flex-shrink: 0;
         }
 
@@ -1488,7 +1790,7 @@
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.2);
         }
 
         .newsletter-title {
@@ -1507,7 +1809,7 @@
             flex: 1;
             padding: 12px 16px;
             background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             border-radius: 8px;
             color: rgba(255, 255, 255, 0.9);
             font-size: 14px;
@@ -1516,8 +1818,8 @@
 
         .newsletter-input:focus {
             outline: none;
-            border-color: rgba(30, 144, 255, 0.5);
-            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.1);
+            border-color: rgba(201, 162, 39, 0.5);
+            box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.1);
         }
 
         .newsletter-input::placeholder {
@@ -1528,7 +1830,7 @@
             width: 46px;
             height: 46px;
             border-radius: 8px;
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            background: var(--primary-gradient);
             border: none;
             color: white;
             display: flex;
@@ -1542,19 +1844,20 @@
         .newsletter-button svg {
             width: 20px;
             height: 20px;
+            fill: currentColor;
         }
 
         .newsletter-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(201, 162, 39, 0.3);
         }
 
         .footer-bottom {
             position: relative;
             padding: 25px 20px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(10, 10, 15, 0.8);
+            border-top: 1px solid rgba(201, 162, 39, 0.2);
+            background: rgba(5, 10, 15, 0.8);
         }
 
         .footer-bottom-content {
@@ -1572,7 +1875,7 @@
         }
 
         .heart {
-            color: #ff4757;
+            color: #c9a227;
             animation: heartbeat 1.5s ease infinite;
             display: inline-block;
         }
@@ -1594,10 +1897,9 @@
         .footer-wave svg {
             width: 100%;
             height: 100%;
-            fill: rgba(10, 10, 15, 0.95);
+            fill: rgba(5, 10, 15, 0.95);
         }
 
-        /* Responsividade Footer */
         @media (max-width: 768px) {
             .footer-container {
                 grid-template-columns: 1fr;
@@ -1650,7 +1952,6 @@
             }
         }
         
-        /* CORREÇÃO PARA MOBILE - MANTENDO SCROLL APENAS NO POPUP */
         @media (max-width: 768px) {
             .popup-content {
                 overflow-y: auto !important;
@@ -1669,311 +1970,49 @@
                 margin-top: 20px;
                 flex-shrink: 0;
                 padding-top: 15px;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: 1px solid rgba(201, 162, 39, 0.2);
             }
         }
 
-        /* SEÇÃO DE PLANOS DE GOVERNO - ATUALIZADA PARA SENADO */
-        .plans-section {
-            background: linear-gradient(135deg, #0a1929 0%, #0c2340 100%);
-            padding: 80px 20px;
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        /* Versão mobile - imagem diferente */
+        @media (max-width: 768px) {
+            .front-image {
+                background-image: url('04.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: #0a0a0a;
+            }
+            
+            .back-image {
+                background-image: url('05.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-color: #0a0a0a;
+            }
         }
 
-        .plans-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(30, 144, 255, 0.5), transparent);
-        }
-
-        .plans-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .plans-header {
-            text-align: center;
-            margin-bottom: 60px;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        .plans-title {
-            font-size: 2.8rem;
-            font-weight: 400;
-            color: white;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-            letter-spacing: -0.5px;
-        }
-
-        .plans-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #1e90ff, #4169e1);
-            border-radius: 2px;
-        }
-
-        .plans-subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 30px auto 0;
-            line-height: 1.7;
-            font-weight: 300;
-        }
-
-        .plans-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .plan-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 35px 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .plan-card:nth-child(1) { animation-delay: 0.1s; }
-        .plan-card:nth-child(2) { animation-delay: 0.2s; }
-        .plan-card:nth-child(3) { animation-delay: 0.3s; }
-        .plan-card:nth-child(4) { animation-delay: 0.4s; }
-        .plan-card:nth-child(5) { animation-delay: 0.5s; }
-        .plan-card:nth-child(6) { animation-delay: 0.6s; }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(30, 144, 255, 0.4);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(30, 144, 255, 0.2),
-                0 8px 30px rgba(30, 144, 255, 0.15);
-        }
-
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #1e90ff, #4169e1);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .plan-card:hover::before {
-            opacity: 1;
-        }
-
-        .plan-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(30, 144, 255, 0.1);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            border: 1px solid rgba(30, 144, 255, 0.2);
-        }
-
-        .plan-icon svg {
-            width: 30px;
-            height: 30px;
-            color: #1e90ff;
-        }
-
-        .plan-title {
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 20px;
-            line-height: 1.3;
-        }
-
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .plan-features li {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            padding-left: 24px;
-            position: relative;
-            line-height: 1.5;
-        }
-
-        .plan-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #1e90ff;
-            font-weight: bold;
-        }
-
-        .plan-metrics {
-            display: flex;
-            gap: 20px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .metric {
-            text-align: center;
-            flex: 1;
-        }
-
-        .metric-value {
-            display: block;
-            color: white;
-            font-size: 1.3rem;
+        .igor {
+            color: #c9a227;
             font-weight: 600;
-            margin-bottom: 4px;
+            text-decoration: none;
+            animation: pulseGold 1.5s ease-in-out infinite;
         }
 
-        .metric-label {
-            display: block;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-        }
-
-        /* Resumo dos Planos */
-        .plans-summary {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            animation: fadeInUp 0.8s ease forwards;
-            opacity: 0;
-            animation-delay: 0.7s;
-        }
-
-        .summary-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .summary-title {
-            color: white;
-            font-size: 2rem;
-            font-weight: 400;
-            margin-bottom: 25px;
-        }
-
-        .summary-text {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 40px;
-        }
-
-        .summary-text strong {
-            color: white;
-            font-weight: 500;
-        }
-
-        .summary-metrics {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .summary-metric {
-            text-align: center;
-            min-width: 150px;
-        }
-
-        .summary-value {
-            display: block;
-            color: #1e90ff;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .summary-label {
-            display: block;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.95rem;
-        }
-
-        .summary-actions {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .download-plan, .share-plan {
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border: none;
-        }
-
-        .download-plan {
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
-            color: white;
-            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.3);
-        }
-
-        .download-plan:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(30, 144, 255, 0.4);
-        }
-
-        .share-plan {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .share-plan:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .download-plan svg, .share-plan svg {
-            width: 20px;
-            height: 20px;
+        @keyframes pulseGold {
+            0% {
+                color: #c9a227;
+                text-shadow: 0 0 0px rgba(201, 162, 39, 0);
+            }
+            50% {
+                color: #dbb042;
+                text-shadow: 0 0 8px rgba(201, 162, 39, 0.6);
+            }
+            100% {
+                color: #c9a227;
+                text-shadow: 0 0 0px rgba(201, 162, 39, 0);
+            }
         }
 
         /* Modal do Plano */
@@ -2006,7 +2045,7 @@
             max-height: 85vh;
             background: rgba(15, 25, 40, 0.95);
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             overflow: hidden;
             transition: transform 0.4s ease;
         }
@@ -2017,7 +2056,7 @@
 
         .plan-modal-header {
             padding: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -2032,7 +2071,7 @@
 
         .close-modal {
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(201, 162, 39, 0.3);
             color: white;
             width: 40px;
             height: 40px;
@@ -2046,8 +2085,8 @@
         }
 
         .close-modal:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(201, 162, 39, 0.2);
+            border-color: rgba(201, 162, 39, 0.5);
             transform: rotate(90deg);
         }
 
@@ -2061,14 +2100,15 @@
             display: flex;
             gap: 10px;
             margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(201, 162, 39, 0.2);
             padding-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .tab-button {
             padding: 12px 24px;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(201, 162, 39, 0.2);
             border-radius: 8px;
             color: rgba(255, 255, 255, 0.7);
             cursor: pointer;
@@ -2078,14 +2118,14 @@
         }
 
         .tab-button:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(201, 162, 39, 0.1);
             color: white;
         }
 
         .tab-button.active {
-            background: linear-gradient(135deg, #1e90ff, #4169e1);
+            background: linear-gradient(135deg, #1e3c72, #c9a227);
             color: white;
-            border-color: rgba(30, 144, 255, 0.4);
+            border-color: rgba(201, 162, 39, 0.4);
         }
 
         .tab-content {
@@ -2105,15 +2145,6 @@
             font-weight: 400;
         }
 
-        /* Animações */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsividade */
         @media (max-width: 768px) {
             .plans-section {
                 padding: 60px 20px;
@@ -2205,60 +2236,6 @@
                 gap: 15px;
             }
         }
-
-
-
-
-
-
-
-
-        /* Versão mobile - imagem diferente */
-@media (max-width: 768px) {
-    .front-image {
-        background-image: url('04.png'); /* imagem específica para mobile */
-        background-size: contain; /* garante que a imagem inteira seja visível */
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: #0a0a0a; /* cor de fundo para preencher espaços vazios */
-    }
-    
-    .back-image {
-        background-image: url('05.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-color: #0a0a0a;
-    }
-}
-
-
-
-
-
-
-
-.igor {
-    color: #ffd400;
-    font-weight: 600;
-    text-decoration: none;
-    animation: pulseYellow 1.5s ease-in-out infinite;
-}
-
-@keyframes pulseYellow {
-    0% {
-        color: #ffd400;
-        text-shadow: 0 0 0px rgba(255, 212, 0, 0);
-    }
-    50% {
-        color: #ffea00;
-        text-shadow: 0 0 8px rgba(255, 212, 0, 0.8);
-    }
-    100% {
-        color: #ffd400;
-        text-shadow: 0 0 0px rgba(255, 212, 0, 0);
-    }
-}
     </style>
 </head>
 <body>
@@ -2267,7 +2244,7 @@
         <div class="menu-content">
             <div class="logo">
                 <div class="logo-image">
-                    <img src="03.png" alt="MAG 2026 Logo">
+                    <img src="03.png" alt="Breno Grube 2026 Logo">
                 </div>
                 <span></span>
             </div>
@@ -2280,7 +2257,7 @@
                 
                 <!-- Botão Apoiar -->
                 <button class="pulse-button" id="supportButton">
-                    Apoiar
+                    Apoiar Campanha
                 </button>
             </div>
         </div>
@@ -2294,8 +2271,8 @@
         <div class="donation-overlay" id="donationOverlay">
             <div class="donation-popup">
                 <div class="popup-header">
-                    <h2>Apoie a Campanha de MAG ao Senado</h2>
-                    <p>Sua contribuição ajuda a fortalecer nossa luta por um Brasil mais justo. Escaneie o QR Code ou copie a chave PIX. Qualquer valor é bem-vindo e será usado para levar nossa mensagem a todos os cantos do estado.</p>
+                    <h2>Apoie Breno Grube para Deputado Federal</h2>
+                    <p>Sua contribuição fortalece nossa luta por um Brasil mais justo e por Minas Gerais mais forte. Escaneie o QR Code ou copie a chave PIX. Qualquer valor é bem-vindo.</p>
                 </div>
                 
                 <div class="popup-content">
@@ -2303,7 +2280,7 @@
                         <div class="qr-code-placeholder">
                             <span>PIX</span>
                         </div>
-                        <p class="qr-instructions">Abra seu app de banco, selecione PIX e escaneie o código acima. Você também pode copiar a chave PIX abaixo e colar no seu aplicativo bancário.</p>
+                        <p class="qr-instructions">Abra seu app de banco, selecione PIX e escaneie o código acima. Você também pode copiar a chave PIX abaixo.</p>
                     </div>
                     
                     <div class="pix-key-container">
@@ -2314,16 +2291,16 @@
                                 <span>Copiar</span>
                             </button>
                         </div>
-                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-top: 8px;">Esta é uma chave PIX do tipo CNPJ. Pode ser usada em qualquer banco que aceite PIX.</p>
+                        <p style="color: rgba(255, 255, 255, 0.5); font-size: 12px; margin-top: 8px;">Chave PIX do tipo CNPJ - Campanha oficial</p>
                     </div>
                     
-                    <div style="background: rgba(30, 144, 255, 0.1); border-radius: 12px; padding: 16px; border: 1px solid rgba(30, 144, 255, 0.2); margin-top: 20px;">
-                        <h3 style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin-bottom: 8px;">✨ Sua doação ajuda:</h3>
+                    <div style="background: rgba(201, 162, 39, 0.1); border-radius: 12px; padding: 16px; border: 1px solid rgba(201, 162, 39, 0.2); margin-top: 20px;">
+                        <h3 style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin-bottom: 8px;">⚖️ Sua doação ajuda:</h3>
                         <ul style="color: rgba(255, 255, 255, 0.7); font-size: 14px; line-height: 1.6; padding-left: 20px;">
-                            <li>Levar nossa mensagem a mais pessoas</li>
+                            <li>Levar propostas para todos os municípios de MG</li>
                             <li>Produzir materiais de campanha</li>
-                            <li>Organizar eventos e encontros</li>
-                            <li>Fortalecer a democracia e a participação popular</li>
+                            <li>Fortalecer o debate democrático</li>
+                            <li>Construir um mandato participativo</li>
                         </ul>
                     </div>
                 </div>
@@ -2336,9 +2313,9 @@
 
         <!-- Mensagem de Agradecimento -->
         <div class="thank-you-message" id="thankYouMessage">
-            <div class="thank-you-icon">🎉</div>
+            <div class="thank-you-icon">🙏</div>
             <h3>Obrigado pelo Apoio!</h3>
-            <p>Sua contribuição faz toda a diferença para nossa campanha ao Senado. Juntos vamos construir um Brasil mais justo!</p>
+            <p>Sua contribuição fortalece nossa caminhada para representar Minas Gerais no Congresso Nacional. Juntos faremos a diferença!</p>
             <button class="thank-you-close" id="closeThankYouButton">Continuar Explorando</button>
         </div>
 
@@ -2351,79 +2328,79 @@
             <div class="distortion-grid" id="distortion-grid"></div>
         </div>
 
-        <!-- Seção MAG -->
+        <!-- SEÇÃO BRENO GRUBE -->
         <section class="humans-section" id="humans-section">
             <div class="humans-container">
                 <div class="humans-header">
-                    <h1 class="humans-name">MAG 2026</h1>
-                    <p class="humans-subtitle">Pré-candidato ao Senado Federal - Uma voz em defesa do povo</p>
+                    <h1 class="humans-name">Breno Grube</h1>
+                    <p class="humans-subtitle">Pré-candidato a Deputado Federal por Minas Gerais • 2026</p>
                     
                     <div class="humans-quote">
-                        <p class="humans-quote-text">"O Senado precisa de pessoas que entendam as dores do povo e trabalhem incansavelmente por um país mais justo, próspero e com oportunidades para todos."</p>
-                        <p class="humans-quote-author">— MAG</p>
+                        <p class="humans-quote-text">"Minas Gerais merece representantes que conheçam a realidade do povo, que tenham compromisso com a justiça e que lutem incansavelmente por um país mais justo, com desenvolvimento e oportunidades para todos."</p>
+                        <p class="humans-quote-author">— Dr. Breno Grube, Advogado</p>
                     </div>
                 </div>
 
                 <div class="humans-content">
-                    <p>MAG é mais que um nome na política: é um compromisso com a transformação que o Brasil precisa. Sua trajetória é marcada pela dedicação às causas populares e pela luta incansável por justiça social e desenvolvimento econômico com inclusão.</p>
+                    <p>Natural de Minas Gerais, Breno Grube construiu sua trajetória profissional como advogado, dedicando-se à defesa dos direitos dos cidadãos e ao fortalecimento da justiça em seu estado. Sua formação jurídica e experiência prática proporcionaram uma visão aprofundada das necessidades da população mineira e dos desafios que o Brasil enfrenta.</p>
                     
-                    <p>Em cada batalha, deixou a marca de quem entende a política não como um fim em si mesmo, mas como ferramenta para melhorar a vida das pessoas. Seu olhar sempre esteve voltado para quem mais precisa: os trabalhadores, os jovens, as famílias que lutam por dignidade.</p>
+                    <p>Ao longo de sua carreira, Breno sempre esteve ao lado de quem mais precisa: trabalhadores, pequenos empreendedores, famílias que buscam seus direitos e comunidades que lutam por dignidade. Essa vivência consolidou seu compromisso com a justiça social e com a construção de um país mais igualitário.</p>
                     
                     <div class="humans-highlight">
-                        A política, para MAG, nunca foi sobre cargos ou privilégios, mas sobre serviço. Sobre usar o mandato para amplificar as vozes que não são ouvidas e defender os interesses do povo brasileiro.
+                        "A política não é um fim em si mesma, mas o instrumento mais poderoso para transformar a realidade. Como deputado federal, quero ser a voz de Minas Gerais em Brasília, lutando por recursos para nosso estado, por leis que protejam os mais vulneráveis e por políticas que gerem desenvolvimento com inclusão social."
                     </div>
                     
-                    <p>Sua liderança se caracteriza por uma rara combinação: firmeza nos princípios e capacidade de diálogo. Sabia quando ouvir, quando argumentar, quando agir. E em todos esses momentos, manteve intacta sua integridade — qualidade essencial para quem deseja representar a população no Senado Federal.</p>
+                    <p>Breno Grube representa uma nova geração de políticos: preparada, ética e comprometida com resultados. Seu conhecimento jurídico aliado à sensibilidade social o credencia para debater e propor soluções para os grandes desafios nacionais, sempre com os pés no chão de Minas Gerais.</p>
                     
                     <div class="humans-qualities">
                         <div class="humans-quality">
-                            <div class="humans-quality-title">Compromisso com o Povo</div>
-                            <div class="humans-quality-desc">Prioridade absoluta para as necessidades da população, especialmente dos mais vulneráveis.</div>
+                            <div class="humans-quality-title">⚖️ Compromisso com a Justiça</div>
+                            <div class="humans-quality-desc">Defesa intransigente dos direitos do cidadão e do acesso igualitário à justiça para todos os mineiros.</div>
                         </div>
                         <div class="humans-quality">
-                            <div class="humans-quality-title">Diálogo e Construção</div>
-                            <div class="humans-quality-desc">Capacidade de ouvir, negociar e construir consensos em prol do bem comum.</div>
+                            <div class="humans-quality-title">🏛️ Desenvolvimento de MG</div>
+                            <div class="humans-quality-desc">Trabalhar para levar recursos federais e políticas públicas que gerem emprego e renda em todas as regiões do estado.</div>
                         </div>
                         <div class="humans-quality">
-                            <div class="humans-quality-title">Transparência e Ética</div>
-                            <div class="humans-quality-desc">Compromisso inegociável com a honestidade e a prestação de contas à sociedade.</div>
+                            <div class="humans-quality-title">🤝 Diálogo e Participação</div>
+                            <div class="humans-quality-desc">Mandato participativo, ouvindo a população e construindo soluções coletivas para os problemas de Minas.</div>
                         </div>
                     </div>
                     
-                    <p>Mais do que projetos e discursos, a marca de MAG está na confiança que construiu ao longo dos anos. Na certeza de que existem homens públicos que entendem seu papel como missão, não como carreira.</p>
+                    <p>Breno acredita que a política deve ser feita com transparência, honestidade e, acima de tudo, com amor ao próximo. Seu lema é simples: servir. Servir a Minas Gerais, servir ao povo brasileiro, servir àqueles que mais precisam de representação e dignidade.</p>
                     
-                    <p class="humans-signature">Um nome que inspira confiança e representa a esperança de um Brasil melhor para todos.</p>
+                    <p class="humans-signature">Breno Grube 2026 - Uma voz mineira em defesa do Brasil</p>
                 </div>
             </div>
         </section>
 
-        <!-- PLANOS DE GOVERNO - ATUALIZADO PARA SENADO -->
+        <!-- PLANOS - DEPUTADO FEDERAL -->
         <section class="plans-section" id="plans-section">
             <div class="plans-container">
                 <div class="plans-header">
-                    <h2 class="plans-title">Plano para o Senado 2026</h2>
-                    <p class="plans-subtitle">Uma visão clara para representar nosso estado no Senado Federal. Conheça nossas propostas e compromissos com o povo brasileiro.</p>
+                    <h2 class="plans-title">Compromissos com Minas Gerais</h2>
+                    <p class="plans-subtitle">Como Deputado Federal, Breno Grube atuará em Brasília para defender os interesses de Minas Gerais e do povo brasileiro. Conheça suas principais bandeiras e propostas.</p>
                 </div>
 
                 <div class="plans-grid">
-                    <!-- Desenvolvimento Econômico -->
-                    <div class="plan-card" data-category="economia">
+                    <!-- Geração de Emprego e Renda -->
+                    <div class="plan-card">
                         <div class="plan-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
                             </svg>
                         </div>
-                        <h3 class="plan-title">Desenvolvimento Econômico</h3>
+                        <h3 class="plan-title">Geração de Emprego e Renda</h3>
                         <ul class="plan-features">
-                            <li>Defesa da indústria nacional e geração de empregos</li>
-                            <li>Incentivos para pequenas e médias empresas</li>
-                            <li>Reforma tributária que não prejudique os mais pobres</li>
-                            <li>Estímulo à inovação e ao empreendedorismo</li>
-                            <li>Políticas de crédito para agricultura familiar</li>
+                            <li>Apoiar micro e pequenas empresas com linhas de crédito</li>
+                            <li>Incentivar a indústria mineira e o agronegócio familiar</li>
+                            <li>Defender a reforma tributária sem aumento de impostos</li>
+                            <li>Atrair investimentos para todas as regiões de MG</li>
+                            <li>Capacitação profissional para jovens e trabalhadores</li>
                         </ul>
                         <div class="plan-metrics">
                             <div class="metric">
-                                <span class="metric-value">+500 mil</span>
+                                <span class="metric-value">+200 mil</span>
                                 <span class="metric-label">Empregos gerados</span>
                             </div>
                             <div class="metric">
@@ -2433,116 +2410,116 @@
                         </div>
                     </div>
 
-                    <!-- Educação e Conhecimento -->
-                    <div class="plan-card" data-category="educacao">
-                        <div class="plan-icon">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
-                            </svg>
-                        </div>
-                        <h3 class="plan-title">Educação como Prioridade</h3>
-                        <ul class="plan-features">
-                            <li>Valorização dos professores e profissionais da educação</li>
-                            <li>Ampliação do investimento em escolas públicas</li>
-                            <li>Defesa do FUNDEB e da educação básica de qualidade</li>
-                            <li>Programas de bolsas para estudantes de baixa renda</li>
-                            <li>Expansão da educação técnica e profissionalizante</li>
-                        </ul>
-                        <div class="plan-metrics">
-                            <div class="metric">
-                                <span class="metric-value">+R$ 50 bi</span>
-                                <span class="metric-label">Para educação</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">10 milhões</span>
-                                <span class="metric-label">Alunos beneficiados</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Saúde Pública -->
-                    <div class="plan-card" data-category="saude">
+                    <!-- Saúde Pública de Qualidade -->
+                    <div class="plan-card">
                         <div class="plan-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                             </svg>
                         </div>
-                        <h3 class="plan-title">Saúde Pública Forte</h3>
+                        <h3 class="plan-title">Saúde Pública de Qualidade</h3>
                         <ul class="plan-features">
-                            <li>Defesa intransigente do SUS</li>
-                            <li>Mais recursos para hospitais e postos de saúde</li>
+                            <li>Defesa e fortalecimento do SUS</li>
+                            <li>Mais recursos para hospitais regionais de MG</li>
                             <li>Redução das filas de espera para consultas e exames</li>
                             <li>Valorização dos profissionais da saúde</li>
-                            <li>Programas de prevenção e atenção básica</li>
+                            <li>Programas de prevenção em parceria com municípios</li>
                         </ul>
                         <div class="plan-metrics">
                             <div class="metric">
-                                <span class="metric-value">R$ 30 bi</span>
-                                <span class="metric-label">Investimento anual</span>
+                                <span class="metric-value">+R$ 15 bi</span>
+                                <span class="metric-label">Para saúde em MG</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">+20 mil</span>
-                                <span class="metric-label">Profissionais contratados</span>
+                                <span class="metric-value">+10 mil</span>
+                                <span class="label">Profissionais contratados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Educação como Prioridade -->
+                    <div class="plan-card">
+                        <div class="plan-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="plan-title">Educação e Conhecimento</h3>
+                        <ul class="plan-features">
+                            <li>Valorização dos professores e profissionais da educação</li>
+                            <li>Defesa do FUNDEB e da educação básica de qualidade</li>
+                            <li>Ampliação de escolas técnicas em MG</li>
+                            <li>Bolsa universitária para estudantes de baixa renda</li>
+                            <li>Incentivo à pesquisa e inovação nas universidades mineiras</li>
+                        </ul>
+                        <div class="plan-metrics">
+                            <div class="metric">
+                                <span class="metric-value">+R$ 10 bi</span>
+                                <span class="metric-label">Para educação</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5 milhões</span>
+                                <span class="metric-label">Alunos beneficiados</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Segurança Pública -->
-                    <div class="plan-card" data-category="seguranca">
+                    <div class="plan-card">
                         <div class="plan-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
                             </svg>
                         </div>
-                        <h3 class="plan-title">Segurança Cidadã</h3>
+                        <h3 class="plan-title">Segurança com Cidadania</h3>
                         <ul class="plan-features">
-                            <li>Políticas de prevenção à violência</li>
-                            <li>Valorização das polícias e agentes de segurança</li>
+                            <li>Mais recursos para as polícias de Minas Gerais</li>
+                            <li>Políticas de prevenção à violência nas comunidades</li>
                             <li>Combate ao crime organizado e ao tráfico de drogas</li>
-                            <li>Investimento em inteligência e tecnologia</li>
+                            <li>Valorização dos agentes de segurança pública</li>
                             <li>Proteção às mulheres e grupos vulneráveis</li>
                         </ul>
                         <div class="plan-metrics">
                             <div class="metric">
-                                <span class="metric-value">-30%</span>
+                                <span class="metric-value">-25%</span>
                                 <span class="metric-label">Redução da violência</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">+15 mil</span>
+                                <span class="metric-value">+5 mil</span>
                                 <span class="metric-label">Novos policiais</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Meio Ambiente -->
-                    <div class="plan-card" data-category="ambiente">
+                    <!-- Agricultura e Interior -->
+                    <div class="plan-card">
                         <div class="plan-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/>
+                                <path d="M19 10c-1.1 0-2 .9-2 2h-1c0-1.66-1.34-3-3-3s-3 1.34-3 3H9c0-1.66-1.34-3-3-3s-3 1.34-3 3H2c0-2.76 2.24-5 5-5s5 2.24 5 5c0-2.76 2.24-5 5-5s5 2.24 5 5h-2c0-1.1-.9-2-2-2zM6 14c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm6 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm6 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
                             </svg>
                         </div>
-                        <h3 class="plan-title">Sustentabilidade e Clima</h3>
+                        <h3 class="plan-title">Agricultura e Desenvolvimento do Interior</h3>
                         <ul class="plan-features">
-                            <li>Defesa da Amazônia e dos biomas brasileiros</li>
-                            <li>Incentivo às energias renováveis</li>
-                            <li>Desenvolvimento sustentável com geração de empregos</li>
-                            <li>Combate ao desmatamento ilegal</li>
-                            <li>Proteção das águas e recursos naturais</li>
+                            <li>Apoio à agricultura familiar e pequenos produtores</li>
+                            <li>Crédito facilitado para o produtor rural</li>
+                            <li>Infraestrutura para escoamento da produção</li>
+                            <li>Defesa do agronegócio mineiro e da sustentabilidade</li>
+                            <li>Incentivo à agroindústria e cooperativismo</li>
                         </ul>
                         <div class="plan-metrics">
                             <div class="metric">
-                                <span class="metric-value">-50%</span>
-                                <span class="metric-label">Desmatamento</span>
+                                <span class="metric-value">+300 mil</span>
+                                <span class="metric-label">Produtores apoiados</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">+1 milhão</span>
-                                <span class="metric-label">Árvores plantadas</span>
+                                <span class="metric-value">R$ 5 bi</span>
+                                <span class="metric-label">Em crédito rural</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Direitos Sociais -->
-                    <div class="plan-card" data-category="social">
+                    <div class="plan-card">
                         <div class="plan-icon">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-1 .05 1.16.84 2 1.87 2 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
@@ -2550,19 +2527,19 @@
                         </div>
                         <h3 class="plan-title">Direitos Sociais e Inclusão</h3>
                         <ul class="plan-features">
-                            <li>Defesa dos direitos dos trabalhadores</li>
+                            <li>Defesa dos direitos dos trabalhadores e aposentados</li>
                             <li>Proteção às minorias e grupos vulneráveis</li>
                             <li>Políticas de inclusão e combate à desigualdade</li>
-                            <li>Moradia digna para todos</li>
-                            <li>Apoio às pessoas com deficiência</li>
+                            <li>Moradia digna para famílias de baixa renda</li>
+                            <li>Apoio às pessoas com deficiência e seus familiares</li>
                         </ul>
                         <div class="plan-metrics">
                             <div class="metric">
-                                <span class="metric-value">+5 milhões</span>
+                                <span class="metric-value">+2 milhões</span>
                                 <span class="metric-label">Pessoas assistidas</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">R$ 20 bi</span>
+                                <span class="metric-value">R$ 8 bi</span>
                                 <span class="metric-label">Em programas sociais</span>
                             </div>
                         </div>
@@ -2571,21 +2548,21 @@
 
                 <div class="plans-summary">
                     <div class="summary-content">
-                        <h3 class="summary-title">Compromissos com o Povo</h3>
-                        <p class="summary-text">Nossa atuação no Senado será baseada em 3 pilares fundamentais: <strong>Defesa intransigente dos direitos do povo</strong>, <strong>Desenvolvimento econômico com justiça social</strong> e <strong>Combate à corrupção e transparência</strong>. Acreditamos que o Brasil pode ser um país mais justo e próspero para todos.</p>
+                        <h3 class="summary-title">Compromisso com Minas e o Brasil</h3>
+                        <p class="summary-text">O mandato de Breno Grube será baseado em <strong>transparência, diálogo e resultados</strong>. Atuaremos em 3 frentes principais: <strong>defesa dos direitos do povo mineiro</strong>, <strong>desenvolvimento econômico com justiça social</strong> e <strong>combate à corrupção</strong>. Acompanhe nosso trabalho e cobre resultados.</p>
                         
                         <div class="summary-metrics">
                             <div class="summary-metric">
-                                <span class="summary-value">12 projetos</span>
+                                <span class="summary-value">10 projetos</span>
                                 <span class="summary-label">Prioritários no 1º ano</span>
                             </div>
                             <div class="summary-metric">
-                                <span class="summary-value">+30 milhões</span>
-                                <span class="summary-label">Brasileiros impactados</span>
+                                <span class="summary-value">+15 milhões</span>
+                                <span class="summary-label">Mineiros impactados</span>
                             </div>
                             <div class="summary-metric">
                                 <span class="summary-value">100%</span>
-                                <span class="summary-label">Transparência e prestação de contas</span>
+                                <span class="summary-label">Prestação de contas</span>
                             </div>
                         </div>
                         
@@ -2594,7 +2571,7 @@
                                 <svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                                 </svg>
-                                Baixar Plano Completo (PDF)
+                                Baixar Plano Completo
                             </button>
                             <button class="share-plan" id="sharePlan">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -2608,106 +2585,67 @@
             </div>
         </section>
 
-        <!-- Modal para o plano completo -->
-        <div class="plan-modal" id="planModal">
-            <div class="plan-modal-content">
-                <div class="plan-modal-header">
-                    <h2>Plano para o Senado - Completo</h2>
-                    <button class="close-modal" id="closeModal">✕</button>
-                </div>
-                <div class="plan-modal-body">
-                    <div class="modal-tabs">
-                        <button class="tab-button active" data-tab="resumo">Resumo Executivo</button>
-                        <button class="tab-button" data-tab="metas">Metas e Indicadores</button>
-                        <button class="tab-button" data-tab="cronograma">Cronograma</button>
-                        <button class="tab-button" data-tab="orcamento">Orçamento</button>
-                    </div>
-                    
-                    <div class="tab-content active" id="resumo-tab">
-                        <h3>Resumo Executivo</h3>
-                        <p>Nosso plano de atuação no Senado é estruturado em 6 eixos principais, com 12 projetos prioritários no primeiro ano que transformarão a realidade de milhões de brasileiros.</p>
-                        <p>Cada iniciativa foi planejada com base em diálogo com a população, experiências bem-sucedidas e análise técnica, garantindo que nossa atuação atenda às reais necessidades do povo brasileiro.</p>
-                    </div>
-                    
-                    <div class="tab-content" id="metas-tab">
-                        <h3>Metas e Indicadores</h3>
-                        <p>Estabelecemos metas claras e indicadores mensuráveis para cada área, permitindo o acompanhamento transparente de nossa atuação no Senado. Acompanhe nosso mandato e cobre resultados.</p>
-                    </div>
-                    
-                    <div class="tab-content" id="cronograma-tab">
-                        <h3>Cronograma de Atuação</h3>
-                        <p>Planejamento detalhado das ações ao longo dos 8 anos de mandato, com marcos semestrais e avaliações periódicas de resultados.</p>
-                    </div>
-                    
-                    <div class="tab-content" id="orcamento-tab">
-                        <h3>Orçamento e Fontes</h3>
-                        <p>Detalhamento completo das fontes de recursos e alocação orçamentária necessária para implementação de cada projeto e proposta.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- GALERIA DE FOTOS SIMPLES -->
+        <!-- GALERIA DE FOTOS -->
         <section class="gallery-section" id="gallery-section">
             <div class="gallery-container">
                 <div class="gallery-header">
-                    <h2 class="gallery-title">Galeria MAG 2026</h2>
-                    <p class="gallery-subtitle">Momentos marcantes da trajetória de luta e compromisso com o povo</p>
+                    <h2 class="gallery-title">Galeria Breno Grube</h2>
+                    <p class="gallery-subtitle">Momentos da trajetória de compromisso com Minas Gerais</p>
                 </div>
 
                 <!-- Grid de Fotos -->
                 <div class="gallery-grid" id="galleryGrid">
                     <!-- Foto 1 -->
                     <div class="gallery-item" data-index="0">
-                        <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em evento político" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Breno em evento" class="gallery-image">
                         <div class="gallery-overlay">
-                            <h3 class="gallery-caption">Encontro com lideranças</h3>
-                            <p class="gallery-date">2024</p>
+                            <h3 class="gallery-caption">Diálogo com lideranças</h3>
+                            <p class="gallery-date">Belo Horizonte, 2025</p>
                         </div>
                     </div>
 
                     <!-- Foto 2 -->
                     <div class="gallery-item" data-index="1">
-                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG com comunidades" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Breno em comunidade" class="gallery-image">
                         <div class="gallery-overlay">
-                            <h3 class="gallery-caption">Diálogo com o povo</h3>
-                            <p class="gallery-date">2023</p>
+                            <h3 class="gallery-caption">Visita a comunidades</h3>
+                            <p class="gallery-date">Vale do Jequitinhonha, 2024</p>
                         </div>
                     </div>
 
                     <!-- Foto 3 -->
                     <div class="gallery-item" data-index="2">
-                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em reunião" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Reunião de trabalho" class="gallery-image">
                         <div class="gallery-overlay">
-                            <h3 class="gallery-caption">Reunião de trabalho</h3>
-                            <p class="gallery-date">2023</p>
+                            <h3 class="gallery-caption">Construção coletiva</h3>
+                            <p class="gallery-date">Uberlândia, 2025</p>
                         </div>
                     </div>
 
                     <!-- Foto 4 -->
                     <div class="gallery-item" data-index="3">
-                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG discursando" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Breno discursando" class="gallery-image">
                         <div class="gallery-overlay">
                             <h3 class="gallery-caption">Discurso em evento</h3>
-                            <p class="gallery-date">2024</p>
+                            <p class="gallery-date">Juiz de Fora, 2025</p>
                         </div>
                     </div>
 
                     <!-- Foto 5 -->
                     <div class="gallery-item" data-index="4">
-                        <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG em reunião com equipe" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipe de campanha" class="gallery-image">
                         <div class="gallery-overlay">
-                            <h3 class="gallery-caption">Construção coletiva</h3>
-                            <p class="gallery-date">2023</p>
+                            <h3 class="gallery-caption">Equipe Breno Grube</h3>
+                            <p class="gallery-date">Montes Claros, 2025</p>
                         </div>
                     </div>
 
                     <!-- Foto 6 -->
                     <div class="gallery-item" data-index="5">
-                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MAG com apoiadores" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Com apoiadores" class="gallery-image">
                         <div class="gallery-overlay">
                             <h3 class="gallery-caption">Apoio popular</h3>
-                            <p class="gallery-date">2024</p>
+                            <p class="gallery-date">Poços de Caldas, 2024</p>
                         </div>
                     </div>
 
@@ -2716,16 +2654,16 @@
                         <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Momento de reflexão" class="gallery-image">
                         <div class="gallery-overlay">
                             <h3 class="gallery-caption">Compromisso com o futuro</h3>
-                            <p class="gallery-date">2024</p>
+                            <p class="gallery-date">Ouro Preto, 2025</p>
                         </div>
                     </div>
 
                     <!-- Foto 8 -->
                     <div class="gallery-item" data-index="7">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Equipe de campanha" class="gallery-image">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Evento político" class="gallery-image">
                         <div class="gallery-overlay">
-                            <h3 class="gallery-caption">Equipe MAG 2026</h3>
-                            <p class="gallery-date">2024</p>
+                            <h3 class="gallery-caption">Encontro com a população</h3>
+                            <p class="gallery-date">Governador Valadares, 2025</p>
                         </div>
                     </div>
                 </div>
@@ -2751,37 +2689,77 @@
         </div>
     </div>
 
+    <!-- Modal para o plano completo -->
+    <div class="plan-modal" id="planModal">
+        <div class="plan-modal-content">
+            <div class="plan-modal-header">
+                <h2>Plano Breno Grube - Deputado Federal</h2>
+                <button class="close-modal" id="closeModal">✕</button>
+            </div>
+            <div class="plan-modal-body">
+                <div class="modal-tabs">
+                    <button class="tab-button active" data-tab="resumo">Visão Geral</button>
+                    <button class="tab-button" data-tab="metas">Metas para MG</button>
+                    <button class="tab-button" data-tab="cronograma">Atuação em 4 anos</button>
+                    <button class="tab-button" data-tab="orcamento">Transparência</button>
+                </div>
+                
+                <div class="tab-content active" id="resumo-tab">
+                    <h3>Visão Geral do Mandato</h3>
+                    <p>Nosso plano de atuação na Câmara dos Deputados é estruturado em 6 eixos prioritários, com foco em beneficiar todas as regiões de Minas Gerais. Cada proposta foi construída a partir do diálogo com a população e da experiência de quem conhece a realidade do estado.</p>
+                    <p>Atuaremos com transparência, participação popular e compromisso com resultados. Acreditamos que a política pode transformar vidas quando feita com honestidade e dedicação.</p>
+                </div>
+                
+                <div class="tab-content" id="metas-tab">
+                    <h3>Metas para Minas Gerais</h3>
+                    <p>Estabelecemos metas claras para cada área de atuação, permitindo que você acompanhe nosso trabalho e cobre resultados. Entre elas:</p>
+                    <ul style="color: rgba(255,255,255,0.8); margin-left: 20px;">
+                        <li>Destinar R$ 500 milhões em emendas para saúde municipal</li>
+                        <li>Articular R$ 1 bilhão para infraestrutura nas cidades mineiras</li>
+                        <li>Aprovar 5 leis de proteção aos direitos dos trabalhadores</li>
+                        <li>Criar frente parlamentar em defesa do setor produtivo de MG</li>
+                    </ul>
+                </div>
+                
+                <div class="tab-content" id="cronograma-tab">
+                    <h3>Atuação ao longo do mandato</h3>
+                    <p>Planejamento das ações ao longo dos 4 anos de mandato, com prestação de contas semestral e avaliação participativa dos resultados alcançados.</p>
+                </div>
+                
+                <div class="tab-content" id="orcamento-tab">
+                    <h3>Compromisso com a Transparência</h3>
+                    <p>Todos os recursos públicos destinados ao mandato serão geridos com total transparência. Acompanhe em nosso portal a destinação de emendas, gastos com gabinete e resultados alcançados.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer Elegante -->
     <footer class="site-footer">
         <div class="footer-container">
             <!-- Seção Logo e Descrição -->
             <div class="footer-section">
                 <div class="footer-logo">
-                    <img src="logo.png" alt="MAG 2026 Logo">
-                    <span>2026</span>
+                    <img src="03.png" alt="Breno Grube 2026">
+                    <span>Breno Grube</span>
                 </div>
                 <p class="footer-description">
-                    Juntos por um Brasil mais justo, próspero e com oportunidades para todos. O futuro se constrói com diálogo, respeito e compromisso com o povo.
+                    Advogado, mineiro de coração e alma. Comprometido em representar Minas Gerais com dedicação, ética e amor ao povo. Juntos por um estado mais justo e desenvolvido.
                 </p>
                 <div class="footer-social">
                     <a href="#" class="social-icon" title="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg viewBox="0 0 24 24">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                         </svg>
                     </a>
-                    <a href="#" class="social-icon" title="Twitter">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                        </svg>
-                    </a>
                     <a href="#" class="social-icon" title="Facebook">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg viewBox="0 0 24 24">
                             <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                         </svg>
                     </a>
-                    <a href="#" class="social-icon" title="YouTube">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <a href="#" class="social-icon" title="Twitter">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.213c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                         </svg>
                     </a>
                 </div>
@@ -2792,46 +2770,44 @@
                 <h3 class="footer-title">Links Rápidos</h3>
                 <ul class="footer-links">
                     <li><a href="#hero-section">Início</a></li>
-                    <li><a href="#humans-section">Sobre MAG</a></li>
+                    <li><a href="#humans-section">Sobre Breno</a></li>
                     <li><a href="#plans-section">Propostas</a></li>
                     <li><a href="#gallery-section">Galeria</a></li>
                     <li><a href="#" class="show-donation">Apoiar Campanha</a></li>
-                    <li><a href="#">Participe</a></li>
                     <li><a href="#">Contato</a></li>
-                    <li><a href="#">Política de Privacidade</a></li>
                 </ul>
             </div>
 
             <!-- Seção Contato -->
             <div class="footer-section">
-                <h3 class="footer-title">Entre em Contato</h3>
+                <h3 class="footer-title">Contato</h3>
                 <ul class="footer-contact">
                     <li>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        <span>contato@mag2026.com</span>
+                        <span>contato@brenogrube.com</span>
                     </li>
                     <li>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg viewBox="0 0 24 24">
                             <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                         </svg>
-                        <span>(61) 99999-9999</span>
+                        <span>(31) 99999-9999</span>
                     </li>
                     <li>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
+                        <svg viewBox="0 0 24 24">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
-                        <span>Brasília - DF</span>
+                        <span>Belo Horizonte - MG</span>
                     </li>
                 </ul>
                 
                 <div class="newsletter">
-                    <h4 class="newsletter-title">Receba Novidades</h4>
+                    <h4 class="newsletter-title">Fique por dentro</h4>
                     <div class="newsletter-form">
                         <input type="email" placeholder="Seu e-mail" class="newsletter-input">
                         <button class="newsletter-button">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
+                            <svg viewBox="0 0 24 24">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                             </svg>
                         </button>
@@ -2843,7 +2819,7 @@
         <!-- Linha de Copyright -->
         <div class="footer-bottom">
             <div class="footer-bottom-content">
-                <p>&copy; <span id="currentYear"></span> MAG 2026. Todos os direitos reservados.</p>
+                <p>&copy; <span id="currentYear"></span> Breno Grube 2026. Todos os direitos reservados.</p>
                 <p>Desenvolvido com <span class="heart">❤</span> por <a class="igor" href="https://behance.net/igorfermon/projects">Igor Monção</a></p>
             </div>
             
@@ -2867,7 +2843,7 @@
         <source src="jingle.ogg" type="audio/ogg">
     </audio>
 
-    <!-- SCRIPT Completo -->
+    <!-- SCRIPT Completo (mantido do original, apenas com as classes renomeadas) -->
     <script>
         if (window.waterEffectInitialized) {
             console.warn('Water Effect já está inicializado');
@@ -3001,12 +2977,10 @@
                         const vh = window.innerHeight * 0.01;
                         
                         if (isMobile) {
-                            // No mobile: altura do conteúdo deve permitir scroll
                             const popup = document.querySelector('.donation-popup');
                             const headerHeight = document.querySelector('.popup-header').offsetHeight;
                             const buttonsHeight = document.querySelector('.popup-buttons').offsetHeight;
                             
-                            // Ajusta a altura máxima do conteúdo
                             const maxContentHeight = window.innerHeight * 0.9 - headerHeight - buttonsHeight - 40;
                             this.popupContent.style.maxHeight = `${maxContentHeight}px`;
                         }
@@ -3054,7 +3028,6 @@
                         }
                     });
                     
-                    // Impedir scroll do background quando estiver scrollando no popup
                     this.popupContent.addEventListener('wheel', (e) => {
                         const isAtTop = this.popupContent.scrollTop === 0;
                         const isAtBottom = this.popupContent.scrollHeight - this.popupContent.scrollTop === this.popupContent.clientHeight;
@@ -3300,13 +3273,13 @@
                         this.state.isMouseOver = true;
                         
                         setTimeout(() => {
-                            this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.35)';
+                            this.waterCursor.style.borderColor = 'rgba(201, 162, 39, 0.35)';
                         }, 100);
                     });
                     
                     this.heroSection.addEventListener('mouseleave', () => {
                         this.waterCursor.style.opacity = '0';
-                        this.waterCursor.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        this.waterCursor.style.borderColor = 'rgba(201, 162, 39, 0.2)';
                         this.cursorHalo.style.opacity = '0';
                         this.backImage.style.opacity = '0';
                         this.backImage.style.maskImage = 'none';
@@ -3320,9 +3293,9 @@
                     
                     this.heroSection.addEventListener('mousedown', () => {
                         this.waterCursor.style.transform = 'translate(-50%, -50%) scale(2)';
-                        this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.6)';
+                        this.waterCursor.style.borderColor = 'rgba(201, 162, 39, 0.6)';
                         this.waterCursor.style.boxShadow = 
-                            '0 0 30px rgba(255, 255, 255, 0.2), 0 0 60px rgba(173, 216, 230, 0.3)';
+                            '0 0 30px rgba(201, 162, 39, 0.2), 0 0 60px rgba(201, 162, 39, 0.3)';
                         this.cursorHalo.style.transform = 'translate(-50%, -50%) scale(2.8)';
                         this.cursorHalo.style.opacity = '0.4';
                         
@@ -3331,9 +3304,9 @@
                     
                     this.heroSection.addEventListener('mouseup', () => {
                         this.waterCursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                        this.waterCursor.style.borderColor = 'rgba(173, 216, 230, 0.35)';
+                        this.waterCursor.style.borderColor = 'rgba(201, 162, 39, 0.35)';
                         this.waterCursor.style.boxShadow = 
-                            '0 0 25px rgba(255, 255, 255, 0.12), 0 0 50px rgba(173, 216, 230, 0.08)';
+                            '0 0 25px rgba(201, 162, 39, 0.12), 0 0 50px rgba(201, 162, 39, 0.08)';
                         this.cursorHalo.style.transform = 'translate(-50%, -50%) scale(2.2)';
                         this.cursorHalo.style.opacity = '0.25';
                     });
@@ -3501,10 +3474,10 @@
                     this.cursorHalo.style.transform = `translate(-50%, -50%) scale(${haloScale})`;
                     
                     const intensity = Math.min(this.state.velocity * 0.04, 0.4);
-                    this.waterCursor.style.borderColor = `rgba(173, 216, 230, ${0.3 + intensity})`;
+                    this.waterCursor.style.borderColor = `rgba(201, 162, 39, ${0.3 + intensity})`;
                     this.waterCursor.style.boxShadow = 
-                        `0 0 ${25 + intensity * 10}px rgba(255, 255, 255, ${0.12 + intensity * 0.1}),
-                         0 0 ${50 + intensity * 20}px rgba(173, 216, 230, ${0.08 + intensity * 0.05})`;
+                        `0 0 ${25 + intensity * 10}px rgba(201, 162, 39, ${0.12 + intensity * 0.1}),
+                         0 0 ${50 + intensity * 20}px rgba(201, 162, 39, ${0.08 + intensity * 0.05})`;
                 }
                 
                 startAnimation() {
@@ -3543,7 +3516,7 @@
                 }
             }
             
-            // Sistema da Galeria Simples
+            // Sistema da Galeria
             class GallerySystem {
                 constructor() {
                     this.galleryItems = document.querySelectorAll('.gallery-item');
@@ -3565,14 +3538,12 @@
                 }
                 
                 setupEventListeners() {
-                    // Clique nas imagens
                     this.galleryItems.forEach((item, index) => {
                         item.addEventListener('click', () => {
                             this.openLightbox(index);
                         });
                     });
                     
-                    // Navegação do lightbox
                     this.prevButton.addEventListener('click', () => {
                         this.navigateLightbox(-1);
                     });
@@ -3581,12 +3552,10 @@
                         this.navigateLightbox(1);
                     });
                     
-                    // Fechar lightbox
                     this.closeLightbox.addEventListener('click', () => {
                         this.closeLightboxModal();
                     });
                     
-                    // Fechar com ESC
                     document.addEventListener('keydown', (e) => {
                         if (e.key === 'Escape' && this.lightboxModal.classList.contains('active')) {
                             this.closeLightboxModal();
@@ -3599,7 +3568,6 @@
                         }
                     });
                     
-                    // Fechar ao clicar fora da imagem
                     this.lightboxModal.addEventListener('click', (e) => {
                         if (e.target === this.lightboxModal) {
                             this.closeLightboxModal();
@@ -3624,7 +3592,6 @@
                     this.lightboxModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                     
-                    // Animação de entrada
                     setTimeout(() => {
                         this.lightboxModal.style.opacity = '1';
                     }, 10);
@@ -3633,7 +3600,6 @@
                 navigateLightbox(direction) {
                     this.currentIndex += direction;
                     
-                    // Loop circular
                     if (this.currentIndex < 0) {
                         this.currentIndex = this.galleryItems.length - 1;
                     } else if (this.currentIndex >= this.galleryItems.length) {
@@ -3645,7 +3611,6 @@
                     const caption = item.querySelector('.gallery-caption');
                     const date = item.querySelector('.gallery-date');
                     
-                    // Animação de transição
                     this.lightboxImage.style.opacity = '0';
                     
                     setTimeout(() => {
@@ -3684,7 +3649,6 @@
                 }
                 
                 setupEventListeners() {
-                    // Link para mostrar a doação
                     document.querySelectorAll('.show-donation').forEach(link => {
                         link.addEventListener('click', (e) => {
                             e.preventDefault();
@@ -3692,7 +3656,6 @@
                         });
                     });
                     
-                    // Newsletter submit
                     const newsletterForm = document.querySelector('.newsletter-form');
                     const newsletterInput = document.querySelector('.newsletter-input');
                     const newsletterButton = document.querySelector('.newsletter-button');
@@ -3700,13 +3663,12 @@
                     const submitNewsletter = () => {
                         const email = newsletterInput.value.trim();
                         if (email && this.validateEmail(email)) {
-                            // Simulação de envio
-                            newsletterButton.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+                            newsletterButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
                             newsletterButton.style.background = '#2ecc71';
                             newsletterInput.value = '';
                             
                             setTimeout(() => {
-                                newsletterButton.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
+                                newsletterButton.innerHTML = '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
                                 newsletterButton.style.background = '';
                             }, 3000);
                         } else {
@@ -3731,7 +3693,6 @@
                         });
                     }
                     
-                    // Links suaves
                     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                         anchor.addEventListener('click', function (e) {
                             const href = this.getAttribute('href');
@@ -3776,7 +3737,7 @@
                 }
             }
             
-            // Sistema de Planos de Governo
+            // Sistema de Planos
             class PlansSystem {
                 constructor() {
                     this.downloadPlan = document.getElementById('downloadPlan');
@@ -3795,29 +3756,24 @@
                 }
                 
                 setupEventListeners() {
-                    // Botão de download
                     this.downloadPlan.addEventListener('click', () => {
                         this.showPlanModal();
                     });
                     
-                    // Botão de compartilhar
                     this.sharePlan.addEventListener('click', () => {
                         this.sharePlans();
                     });
                     
-                    // Fechar modal
                     this.closeModal.addEventListener('click', () => {
                         this.closePlanModal();
                     });
                     
-                    // Fechar modal ao clicar fora
                     this.planModal.addEventListener('click', (e) => {
                         if (e.target === this.planModal) {
                             this.closePlanModal();
                         }
                     });
                     
-                    // Tabs do modal
                     this.tabButtons.forEach(button => {
                         button.addEventListener('click', () => {
                             const tabId = button.getAttribute('data-tab');
@@ -3825,7 +3781,6 @@
                         });
                     });
                     
-                    // Fechar com ESC
                     document.addEventListener('keydown', (e) => {
                         if (e.key === 'Escape' && this.planModal.classList.contains('active')) {
                             this.closePlanModal();
@@ -3834,7 +3789,6 @@
                 }
                 
                 setupAnimations() {
-                    // Animar cards ao scroll
                     const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
@@ -3855,7 +3809,6 @@
                     this.planModal.classList.add('active');
                     document.body.style.overflow = 'hidden';
                     
-                    // Animação de entrada
                     setTimeout(() => {
                         this.planModal.style.opacity = '1';
                     }, 10);
@@ -3871,21 +3824,17 @@
                 }
                 
                 switchTab(tabId, clickedButton) {
-                    // Remover classe active de todos os botões e conteúdos
                     this.tabButtons.forEach(btn => btn.classList.remove('active'));
                     this.tabContents.forEach(content => content.classList.remove('active'));
                     
-                    // Adicionar classe active ao botão clicado
                     clickedButton.classList.add('active');
-                    
-                    // Mostrar conteúdo correspondente
                     document.getElementById(`${tabId}-tab`).classList.add('active');
                 }
                 
                 sharePlans() {
                     const shareData = {
-                        title: 'Plano de Governo MAG 2026',
-                        text: 'Conheça o plano completo para o Senado!',
+                        title: 'Breno Grube 2026 - Deputado Federal',
+                        text: 'Conheça as propostas de Breno Grube para Minas Gerais!',
                         url: window.location.href + '#plans-section'
                     };
                     
@@ -3894,11 +3843,10 @@
                             .then(() => console.log('Compartilhado com sucesso!'))
                             .catch(error => console.log('Erro ao compartilhar:', error));
                     } else {
-                        // Fallback para copiar link
                         navigator.clipboard.writeText(shareData.url)
                             .then(() => {
                                 const originalText = this.sharePlan.innerHTML;
-                                this.sharePlan.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Link copiado!';
+                                this.sharePlan.innerHTML = '<svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Link copiado!';
                                 
                                 setTimeout(() => {
                                     this.sharePlan.innerHTML = originalText;
@@ -3924,7 +3872,6 @@
                     waterEffect.destroy();
                 });
                 
-                // Salvar referências para debug se necessário
                 window.waterEffectInstance = waterEffect;
                 window.donationSystem = donationSystem;
                 window.musicSystem = musicSystem;
