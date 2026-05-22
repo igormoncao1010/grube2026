@@ -288,7 +288,7 @@ function drawStoryCard(context, width, height, name, city, model) {
     context.save();
     roundedRectangle(context, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330, model === "2" ? 150 : 36);
     context.clip();
-    drawCoverImage(context, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330);
+    drawCoverImage(context, supportPhoto, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330);
     context.restore();
 
     context.strokeStyle = model === "2" ? "#ffd63d" : "#ffd63d";

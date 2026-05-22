@@ -1281,10 +1281,19 @@ h3 {
       linear-gradient(90deg, rgba(16, 16, 20, 0.22), rgba(16, 16, 20, 0.22));
   }
 
+  .hero-media {
+    z-index: 4;
+  }
+
   .hero-grid {
     background-position: center;
     background-size: cover;
-    opacity: 0.86;
+    z-index: 4;
+    opacity: 1;
+  }
+
+  .hero-content {
+    z-index: 5;
   }
 
   .hero-media::before {
