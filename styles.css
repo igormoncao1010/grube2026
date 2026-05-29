@@ -2789,6 +2789,28 @@ body.menu-open .menu-button span:last-child {
   }
 }
 
+.hero::after {
+  background:
+    linear-gradient(90deg, transparent 0%, transparent 46%, rgba(21, 21, 21, 0.5) 68%, rgba(21, 21, 21, 0.86) 100%),
+    linear-gradient(0deg, rgba(21, 21, 21, 0.18), transparent 36%);
+}
+
+.hero-media::before {
+  opacity: 0.18;
+}
+
+@media (max-width: 720px) {
+  .hero::after {
+    background:
+      linear-gradient(0deg, rgba(21, 21, 21, 0.54), rgba(21, 21, 21, 0.02) 58%),
+      linear-gradient(90deg, transparent, transparent);
+  }
+
+  .hero-media::before {
+    opacity: 0.08;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
