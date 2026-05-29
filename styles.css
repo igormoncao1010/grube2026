@@ -86,7 +86,8 @@ canvas {
 
 .brand,
 .nav-links a,
-.site-footer a {
+.site-footer a,
+.credit-footer a {
   color: inherit;
   text-decoration: none;
 }
@@ -173,7 +174,8 @@ body.menu-open .menu-button span:last-child {
 }
 
 main,
-.site-footer {
+.site-footer,
+.credit-footer {
   position: relative;
   z-index: 1;
   max-width: 100%;
@@ -1067,6 +1069,24 @@ h3 {
 }
 
 .site-footer a {
+  color: var(--yellow);
+  font-weight: 900;
+}
+
+.credit-footer {
+  display: flex;
+  justify-content: center;
+  padding: 14px max(22px, calc((100vw - 1180px) / 2));
+  background: #0f0f12;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.84rem;
+}
+
+.credit-footer p {
+  margin: 0;
+}
+
+.credit-footer a {
   color: var(--yellow);
   font-weight: 900;
 }
