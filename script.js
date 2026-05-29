@@ -2,6 +2,8 @@ const canvas = document.querySelector("#motion-canvas");
 const ctx = canvas.getContext("2d");
 const header = document.querySelector(".site-header");
 const menuButton = document.querySelector(".menu-button");
+const musicButton = document.querySelector(".music-button");
+const siteJingle = document.querySelector("#site-jingle");
 const navLinks = document.querySelectorAll(".nav-links a");
 const revealItems = document.querySelectorAll("[data-reveal]");
 const marqueeTrack = document.querySelector(".ticker-track");
@@ -31,6 +33,8 @@ const pointer = {
 let particles = [];
 let supportPhoto = null;
 let supportLogo = null;
+let supportCityBackground = null;
+let jingleStarted = false;
 
 function resizeCanvas() {
   const scale = Math.min(window.devicePixelRatio || 1, 2);
@@ -46,7 +50,7 @@ function resizeCanvas() {
     r: Math.random() * 2.2 + 0.6,
     vx: Math.random() * 0.38 - 0.19,
     vy: Math.random() * 0.42 - 0.16,
-    hue: ["#0a8f62", "#ffd23f", "#2247ff", "#ff5f4f"][Math.floor(Math.random() * 4)]
+    hue: ["#00a870", "#ffd63d", "#2257ff", "#ff6048"][Math.floor(Math.random() * 4)]
   }));
 }
 
@@ -120,7 +124,7 @@ function updateScrollEffects() {
   document.documentElement.style.setProperty("--scroll-progress", `${progress}%`);
 
   if (header) {
-    header.style.minHeight = window.scrollY > 70 ? "56px" : "62px";
+    header.style.minHeight = window.innerWidth <= 960 ? "68px" : window.scrollY > 70 ? "56px" : "62px";
   }
 
   if (marqueeTrack) {
@@ -136,6 +140,38 @@ function updateScrollEffects() {
     const offset = (rect.top - window.innerHeight / 2) * speed;
     item.style.transform = `translateY(${offset}px)`;
   });
+}
+
+function updateMusicButton() {
+  if (!musicButton || !siteJingle) return;
+  const isPlaying = !siteJingle.paused;
+  musicButton.setAttribute("aria-pressed", String(isPlaying));
+  musicButton.setAttribute("aria-label", isPlaying ? "Pausar jingle" : "Tocar jingle");
+  document.body.classList.toggle("music-playing", isPlaying);
+}
+
+async function playJingle() {
+  if (!siteJingle) return;
+
+  try {
+    await siteJingle.play();
+    jingleStarted = true;
+    updateMusicButton();
+  } catch (error) {
+    updateMusicButton();
+  }
+}
+
+function toggleJingle() {
+  if (!siteJingle) return;
+
+  if (siteJingle.paused) {
+    playJingle();
+    return;
+  }
+
+  siteJingle.pause();
+  updateMusicButton();
 }
 
 function getSupportFormat() {
@@ -177,6 +213,17 @@ function drawWrappedText(context, text, x, y, maxWidth, lineHeight) {
   });
 
   return currentY;
+}
+
+function drawSingleLineText(context, text, x, y, maxWidth, maxSize, minSize, weight = 900, family = "Arial") {
+  let size = maxSize;
+  while (size > minSize) {
+    context.font = `${weight} ${size}px ${family}`;
+    if (context.measureText(text).width <= maxWidth) break;
+    size -= 2;
+  }
+  context.fillText(text, x, y);
+  return size;
 }
 
 function drawCoverImage(context, image, x, y, width, height) {
@@ -223,137 +270,226 @@ function drawLogo(context, x, y, width) {
 }
 
 function drawStoryCard(context, width, height, name, city, model) {
-  const gradient = context.createLinearGradient(0, 0, width, height);
-  if (model === "2") {
-    gradient.addColorStop(0, "#101014");
-    gradient.addColorStop(0.52, "#0b8f62");
-    gradient.addColorStop(1, "#ffd63d");
-  } else if (model === "3") {
-    gradient.addColorStop(0, "#11131b");
-    gradient.addColorStop(0.62, "#183d52");
-    gradient.addColorStop(1, "#00a870");
+  context.fillStyle = model === "2" ? "#f4f4f1" : model === "3" ? "#151515" : "#eeeeea";
+  context.fillRect(0, 0, width, height);
+
+  if (model === "1") {
+    const softGradient = context.createLinearGradient(0, 270, 0, height - 390);
+    softGradient.addColorStop(0, "#f2f2ee");
+    softGradient.addColorStop(1, "#d8d8d2");
+    context.fillStyle = softGradient;
+    context.fillRect(0, 270, width, height - 660);
+
+    context.fillStyle = "#0b68f0";
+    context.fillRect(0, 0, width, 270);
+    context.fillStyle = "#34383f";
+    context.fillRect(0, height - 390, width, 390);
+  } else if (model === "2") {
+    if (supportCityBackground?.complete && supportCityBackground.naturalWidth) {
+      drawCoverImage(context, supportCityBackground, 0, 0, width, height);
+    }
+
+    const cityGradient = context.createLinearGradient(0, 0, width, height);
+    cityGradient.addColorStop(0, "rgba(18,63,159,0.94)");
+    cityGradient.addColorStop(0.5, "rgba(0,168,112,0.7)");
+    cityGradient.addColorStop(1, "rgba(255,255,255,0.38)");
+    context.fillStyle = cityGradient;
+    context.fillRect(0, 0, width, height);
+
   } else {
-    gradient.addColorStop(0, "#0b3d2c");
-    gradient.addColorStop(0.5, "#ffd63d");
-    gradient.addColorStop(1, "#2257ff");
-  }
-  context.fillStyle = gradient;
-  context.fillRect(0, 0, width, height);
+    const greenGradient = context.createLinearGradient(0, 0, 0, height);
+    greenGradient.addColorStop(0, "#006b3d");
+    greenGradient.addColorStop(0.58, "#078447");
+    greenGradient.addColorStop(1, "#03482c");
+    context.fillStyle = greenGradient;
+    context.fillRect(0, 0, width, height);
 
-  context.fillStyle = model === "2" ? "rgba(16,16,20,0.28)" : "rgba(16,16,20,0.56)";
-  context.fillRect(0, 0, width, height);
-
-  context.strokeStyle = model === "2" ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.16)";
-  context.lineWidth = 4;
-  for (let x = -width; x < width * 2; x += model === "3" ? 62 : 86) {
-    context.beginPath();
-    context.moveTo(x, 0);
-    context.lineTo(x + width, model === "2" ? height * 0.72 : height);
-    context.stroke();
-  }
-
-  if (model === "2") {
-    context.fillStyle = "rgba(255,214,61,0.96)";
-    context.fillRect(0, 0, width, 170);
-    context.fillStyle = "rgba(16,16,20,0.96)";
-    context.fillRect(0, height - 180, width, 180);
-    context.fillStyle = "rgba(255,255,255,0.12)";
-    context.fillRect(70, 250, width - 140, 780);
-  }
-
-  if (model === "3") {
     context.save();
-    context.translate(92, 1110);
-    context.rotate(-Math.PI / 2);
-    context.fillStyle = "rgba(255,214,61,0.2)";
-    context.font = "900 168px Arial";
-    context.fillText("APOIO", 0, 0);
+    context.beginPath();
+    context.moveTo(width * 0.78, 0);
+    context.lineTo(width, 0);
+    context.lineTo(width, height * 0.16);
+    context.lineTo(width * 0.56, height * 0.56);
+    context.closePath();
+    context.fillStyle = "#ffd63d";
+    context.fill();
     context.restore();
+
+    context.save();
+    context.beginPath();
+    context.moveTo(width, height * 0.16);
+    context.lineTo(width, height * 0.56);
+    context.lineTo(width * 0.72, height * 0.72);
+    context.lineTo(width * 0.56, height * 0.56);
+    context.closePath();
+    context.fillStyle = "#0b68f0";
+    context.fill();
+    context.restore();
+
+    context.fillStyle = "rgba(0,0,0,0.22)";
+    context.fillRect(0, height - 640, width, 640);
   }
 
-  context.fillStyle = model === "2" ? "rgba(255,214,61,0.72)" : "rgba(255,214,61,0.92)";
-  context.beginPath();
-  context.arc(width - 120, model === "2" ? 250 : 120, model === "3" ? 210 : 160, 0, Math.PI * 2);
-  context.fill();
-
-  context.fillStyle = model === "2" ? "#101014" : "#ffffff";
   context.textAlign = "left";
   context.textBaseline = "alphabetic";
-  context.font = "900 52px Arial";
-  context.fillText("EU APOIO", 86, 150);
-
-  drawLogo(context, model === "2" ? 90 : 80, model === "2" ? 292 : 230, model === "2" ? 560 : 640);
-
-  if (supportPhoto?.complete) {
-    context.save();
-    roundedRectangle(context, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330, model === "2" ? 150 : 36);
-    context.clip();
-    drawCoverImage(context, supportPhoto, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330);
-    context.restore();
-
-    context.strokeStyle = model === "2" ? "#ffd63d" : "#ffd63d";
-    context.lineWidth = 10;
-    roundedRectangle(context, model === "2" ? 680 : 650, model === "3" ? 500 : 540, model === "2" ? 300 : 330, model === "2" ? 300 : 330, model === "2" ? 150 : 36);
-    context.stroke();
+  context.fillStyle = model === "1" || model === "2" || model === "3" ? "#ffffff" : "#151515";
+  context.font = "900 46px Arial";
+  if (model !== "2" && model !== "3") {
+    context.fillText("EU APOIO", 78, 148);
   }
 
-  context.fillStyle = model === "2" ? "#ffffff" : "#ffffff";
-  context.font = model === "2" ? "900 70px Arial" : "900 78px Arial";
-  drawWrappedText(context, name.toUpperCase(), 86, model === "2" ? 830 : 760, 520, 86);
+  if (model !== "2") {
+    drawLogo(context, model === "1" ? 535 : model === "3" ? 74 : 84, model === "1" ? 48 : model === "3" ? 72 : 220, model === "1" ? 440 : model === "3" ? 420 : 620);
+  }
 
-  context.fillStyle = model === "2" ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.82)";
-  context.font = "500 42px Arial";
-  context.fillText(city, 86, model === "2" ? 948 : 880);
+  if (supportPhoto?.complete) {
+    const photoX = model === "2" ? -81 : model === "3" ? 80 : 0;
+    const photoY = model === "2" ? -96 : model === "3" ? 315 : 270;
+    const photoWidth = model === "2" ? width + 162 : model === "1" ? width : 920;
+    const photoHeight = model === "2" ? Math.round((height - 530) * 1.155) : model === "1" ? height - 660 : 1050;
+    const radius = model === "2" ? 24 : 0;
+    context.save();
+    roundedRectangle(context, photoX, photoY, photoWidth, photoHeight, radius);
+    context.clip();
+    drawCoverImage(context, supportPhoto, photoX, photoY, photoWidth, photoHeight);
+    context.restore();
 
-  context.fillStyle = model === "2" ? "#ffd63d" : "rgba(255,255,255,0.92)";
+    if (model !== "1" && model !== "2") {
+      context.strokeStyle = "#ffd63d";
+      context.lineWidth = model === "3" ? 14 : 8;
+      roundedRectangle(context, photoX, photoY, photoWidth, photoHeight, radius);
+      context.stroke();
+    }
+  }
+
+  if (model === "2") {
+    context.save();
+    context.beginPath();
+    context.moveTo(0, height - 444);
+    context.bezierCurveTo(width * 0.3, height - 530, width * 0.64, height - 570, width, height - 552);
+    context.lineTo(width, height - 518);
+    context.bezierCurveTo(width * 0.62, height - 540, width * 0.28, height - 500, 0, height - 410);
+    context.closePath();
+    context.fillStyle = "#ffd63d";
+    context.fill();
+    context.restore();
+
+    context.save();
+    context.beginPath();
+    context.moveTo(0, height - 410);
+    context.bezierCurveTo(width * 0.28, height - 500, width * 0.62, height - 540, width, height - 520);
+    context.lineTo(width, height);
+    context.lineTo(0, height);
+    context.closePath();
+    context.fillStyle = "#0b68f0";
+    context.fill();
+    context.restore();
+  }
+
+  context.fillStyle = model === "2" ? "#ffd63d" : "#ffffff";
+  context.textAlign = model === "1" ? "right" : "left";
+  if (model === "2") {
+    drawSingleLineText(context, name.toUpperCase(), 70, height - 300, 540, 74, 40);
+  } else {
+    context.font = "900 74px Arial";
+    if (model === "3") {
+      context.textAlign = "center";
+      context.font = "900 86px Arial";
+      drawSingleLineText(context, name.toUpperCase(), width / 2, height - 350, 860, 86, 48);
+    } else {
+      drawWrappedText(context, name.toUpperCase(), model === "1" ? width - 86 : 86, height - 230, model === "1" ? 820 : 560, 82);
+    }
+  }
+  context.textAlign = "left";
+
+  context.fillStyle = model === "2" ? "rgba(255,255,255,0.82)" : "rgba(255,255,255,0.74)";
+  context.font = "500 38px Arial";
+  context.textAlign = model === "1" ? "right" : "left";
+  context.textAlign = model === "3" ? "center" : context.textAlign;
+  context.fillText(city, model === "2" ? 70 : model === "1" ? width - 86 : model === "3" ? width / 2 : 86, model === "2" ? height - 210 : model === "3" ? height - 195 : height - 150);
+  context.textAlign = "left";
+
+  context.fillStyle = model === "2" ? "#ffffff" : model === "1" ? "#ffffff" : "#ffd63d";
   context.font = "900 34px Arial";
-  context.fillText("PRE-CAMPANHA", 86, 1170);
+  context.textAlign = model === "3" ? "center" : "left";
+  context.fillText("PRE-CAMPANHA", model === "2" ? 70 : model === "3" ? width / 2 : 86, model === "3" ? height - 110 : model === "1" ? height - 150 : height - 108);
+  context.textAlign = "left";
 
-  context.fillStyle = model === "2" ? "#ffd63d" : "#ffd63d";
-  context.fillRect(86, 1244, 300, 12);
+  context.fillStyle = "#ffd63d";
+  context.fillRect(model === "2" ? 70 : model === "3" ? width / 2 - 130 : 86, model === "1" ? height - 112 : model === "2" ? height - 70 : height - 92, 260, 8);
+
+  if (model === "2") {
+    context.fillStyle = "#ffffff";
+    context.font = "900 34px Arial";
+    context.fillText("EU APOIO", width - 430, height - 252);
+    drawLogo(context, width - 430, height - 220, 350);
+  }
 }
 
 function drawProfileCard(context, width, height, model) {
-  const gradient = context.createRadialGradient(width * 0.72, height * 0.18, 80, width * 0.5, height * 0.5, width);
-  if (model === "2") {
-    gradient.addColorStop(0, "#ffffff");
-    gradient.addColorStop(0.46, "#ffd63d");
-    gradient.addColorStop(1, "#0b8f62");
-  } else if (model === "3") {
-    gradient.addColorStop(0, "#ffd63d");
-    gradient.addColorStop(0.4, "#ffffff");
-    gradient.addColorStop(1, "#101014");
+  context.fillStyle = model === "2" ? "#f2f2ee" : model === "3" ? "#101216" : "#ffffff";
+  context.fillRect(0, 0, width, height);
+
+  if (model === "1") {
+    context.fillStyle = "#0b68f0";
+    context.fillRect(0, 0, width, height);
+  } else if (model === "2") {
+    context.fillStyle = "#34383f";
+    context.fillRect(0, 0, width, 245);
+    context.fillStyle = "#ffd63d";
+    context.fillRect(0, 245, width, 20);
+    context.fillStyle = "#0b68f0";
+    context.fillRect(0, height - 210, width, 210);
+
+    context.strokeStyle = "rgba(21,21,21,0.08)";
+    context.lineWidth = 2;
+    for (let x = -width; x < width; x += 90) {
+      context.beginPath();
+      context.moveTo(x, 260);
+      context.lineTo(x + width, height - 250);
+      context.stroke();
+    }
   } else {
-    gradient.addColorStop(0, "#ffd63d");
-    gradient.addColorStop(0.42, "#0b8f62");
-    gradient.addColorStop(1, "#11131b");
-  }
-  context.fillStyle = gradient;
-  context.fillRect(0, 0, width, height);
+    const darkGradient = context.createLinearGradient(0, 0, width, height);
+    darkGradient.addColorStop(0, "#078447");
+    darkGradient.addColorStop(0.52, "#006b3d");
+    darkGradient.addColorStop(1, "#03482c");
+    context.fillStyle = darkGradient;
+    context.fillRect(0, 0, width, height);
 
-  context.fillStyle = model === "2" ? "rgba(255,255,255,0.2)" : "rgba(16,16,20,0.26)";
-  context.fillRect(0, 0, width, height);
-
-  context.strokeStyle = model === "2" ? "rgba(16,16,20,0.08)" : "rgba(255,255,255,0.12)";
-  context.lineWidth = 5;
-  for (let y = 80; y < height; y += 88) {
+    context.fillStyle = "#ffd63d";
     context.beginPath();
-    context.moveTo(0, y);
-    context.lineTo(width, model === "3" ? y - 40 : y - 120);
-    context.stroke();
+    context.moveTo(width * 0.68, 0);
+    context.lineTo(width, 0);
+    context.lineTo(width, height * 0.22);
+    context.lineTo(width * 0.5, height * 0.72);
+    context.closePath();
+    context.fill();
+
+    context.fillStyle = "#0b68f0";
+    context.beginPath();
+    context.moveTo(width, height * 0.22);
+    context.lineTo(width, height);
+    context.lineTo(width * 0.78, height);
+    context.lineTo(width * 0.5, height * 0.72);
+    context.closePath();
+    context.fill();
+
+    context.strokeStyle = "rgba(255,255,255,0.08)";
+    context.lineWidth = 2;
+    context.strokeRect(68, 68, width - 136, height - 136);
   }
 
   const centerX = width / 2;
-  const photoSize = model === "2" ? 650 : model === "3" ? 700 : 560;
+  const photoSize = model === "2" ? 650 : model === "3" ? 680 : 720;
   const photoX = centerX - photoSize / 2;
-  const photoY = model === "2" ? 92 : model === "3" ? 60 : 132;
+  const photoY = model === "2" ? 250 : model === "3" ? 170 : 125;
 
   context.save();
   if (model === "2") {
-    roundedRectangle(context, photoX, photoY, photoSize, photoSize, 8);
+    roundedRectangle(context, photoX, photoY, photoSize, photoSize, 24);
   } else if (model === "3") {
-    context.beginPath();
-    context.arc(centerX, photoY + photoSize / 2, photoSize / 2, 0, Math.PI * 2);
+    roundedRectangle(context, photoX, photoY, photoSize, photoSize, 0);
   } else {
     context.beginPath();
     context.arc(centerX, photoY + photoSize / 2, photoSize / 2, 0, Math.PI * 2);
@@ -371,24 +507,50 @@ function drawProfileCard(context, width, height, model) {
   }
   context.restore();
 
-  context.strokeStyle = "#ffd63d";
-  context.lineWidth = model === "2" ? 12 : 18;
+  context.strokeStyle = model === "2" ? "#ffd63d" : model === "3" ? "#ffffff" : "#ffd63d";
+  context.lineWidth = model === "1" ? 16 : 10;
   if (model === "2") {
-    roundedRectangle(context, photoX - 10, photoY - 10, photoSize + 20, photoSize + 20, 8);
+    roundedRectangle(context, photoX - 10, photoY - 10, photoSize + 20, photoSize + 20, 26);
   } else if (model === "3") {
-    context.beginPath();
-    context.arc(centerX, photoY + photoSize / 2, photoSize / 2 + 10, 0, Math.PI * 2);
+    roundedRectangle(context, photoX - 10, photoY - 10, photoSize + 20, photoSize + 20, 0);
   } else {
     context.beginPath();
-    context.arc(centerX, photoY + photoSize / 2, photoSize / 2 + 8, 0, Math.PI * 2);
+    context.arc(centerX, photoY + photoSize / 2, photoSize / 2 + 12, 0, Math.PI * 2);
   }
   context.stroke();
 
+  if (model === "1") {
+    context.strokeStyle = "#ffffff";
+    context.lineWidth = 7;
+    context.beginPath();
+    context.arc(centerX, photoY + photoSize / 2, photoSize / 2 + 34, 0, Math.PI * 2);
+    context.stroke();
+
+    context.fillStyle = "#ffd63d";
+    context.beginPath();
+    context.moveTo(0, height - 285);
+    context.quadraticCurveTo(width / 2, height - 390, width, height - 285);
+    context.lineTo(width, height);
+    context.lineTo(0, height);
+    context.closePath();
+    context.fill();
+
+    context.fillStyle = "#078447";
+    context.beginPath();
+    context.moveTo(0, height - 245);
+    context.quadraticCurveTo(width / 2, height - 345, width, height - 245);
+    context.lineTo(width, height);
+    context.lineTo(0, height);
+    context.closePath();
+    context.fill();
+  }
+
   context.textAlign = "center";
   if (supportLogo?.complete && supportLogo.naturalWidth) {
-    const logoWidth = model === "2" ? 500 : model === "3" ? 620 : 560;
+    const logoWidth = model === "2" ? 380 : model === "3" ? 421 : 480;
     const logoHeight = (supportLogo.naturalHeight / supportLogo.naturalWidth) * logoWidth;
-    context.drawImage(supportLogo, centerX - logoWidth / 2, model === "2" ? 810 : model === "3" ? 800 : 770, logoWidth, logoHeight);
+    const logoY = model === "2" ? 52 : model === "3" ? height - 205 : 810;
+    context.drawImage(supportLogo, centerX - logoWidth / 2, logoY, logoWidth, logoHeight);
   }
 }
 
@@ -399,10 +561,10 @@ function drawSupportCard() {
   const format = getSupportFormat();
   const model = getSupportModel();
   const name = supportName?.value.trim() || "Seu nome";
-  const city = supportCity?.value.trim() || "Brasilia, DF";
+  const city = supportCity?.value.trim() || "Regiao administrativa";
 
-  supportCard.width = format === "profile" ? 1080 : 1080;
-  supportCard.height = format === "profile" ? 1080 : 1350;
+  supportCard.width = 1080;
+  supportCard.height = format === "profile" ? 1080 : 1920;
 
   context.clearRect(0, 0, supportCard.width, supportCard.height);
 
@@ -417,6 +579,19 @@ menuButton?.addEventListener("click", () => {
   const isOpen = document.body.classList.toggle("menu-open");
   menuButton.setAttribute("aria-expanded", String(isOpen));
 });
+
+musicButton?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleJingle();
+});
+
+document.addEventListener("click", (event) => {
+  if (jingleStarted || musicButton?.contains(event.target)) return;
+  playJingle();
+});
+
+siteJingle?.addEventListener("play", updateMusicButton);
+siteJingle?.addEventListener("pause", updateMusicButton);
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
@@ -540,6 +715,10 @@ if (supportCard) {
   supportLogo.onload = drawSupportCard;
   supportLogo.onerror = drawSupportCard;
   supportLogo.src = "logobreno.svg";
+  supportCityBackground = new Image();
+  supportCityBackground.onload = drawSupportCard;
+  supportCityBackground.onerror = drawSupportCard;
+  supportCityBackground.src = "back.png";
   updateSupportModelGroups();
   drawSupportCard();
 }

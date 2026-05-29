@@ -24,14 +24,20 @@
         <a href="#brasilia">Princípios</a>
         <a href="#card-apoio">Card de apoio</a>
         <a href="#causas">Compromissos</a>
-        <a href="#movimento">União</a>
+        <a href="#uniao">União</a>
         <a href="#participar">Acompanhar</a>
       </nav>
+      <button class="music-button" type="button" aria-label="Tocar jingle" aria-pressed="false">
+        <span class="music-icon" aria-hidden="true"></span>
+      </button>
       <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
         <span></span>
         <span></span>
       </button>
     </header>
+
+    <audio id="site-jingle" src="jingle.mp3" preload="auto" loop></audio>
 
     <main id="inicio">
       <section class="hero">
@@ -69,7 +75,7 @@
         <div class="manifesto-number" data-reveal>01</div>
         <div class="manifesto-copy" data-reveal>
           <p class="section-label">Quem é Breno Grube</p>
-          <h2>Ouvir antes de falar. Respeitar antes de discordar. Agir com responsabilidade.</h2>
+          <h2 class="trajectory-title">Ouvir antes de falar. Respeitar antes de discordar. Agir com responsabilidade.</h2>
           <p>
             Breno Grube acredita que liderança não se constrói no grito, mas no respeito, no diálogo
             e na coragem de fazer o que é certo mesmo quando ninguém está olhando.
@@ -102,7 +108,7 @@
         <div class="brasilia-image" data-parallax data-speed="0.12" data-reveal>
           <img src="back.png" alt="Vista conceitual de Brasília" />
           <div class="image-caption">
-            <strong>DF</strong>
+            <strong>Brasília</strong>
             <span>princípios, família e futuro</span>
           </div>
         </div>
@@ -147,8 +153,8 @@
               <input id="support-name" type="text" maxlength="28" placeholder="Seu nome" value="Ana Paula" />
             </label>
             <label>
-              <span>Cidade</span>
-              <input id="support-city" type="text" maxlength="32" placeholder="Sua cidade" value="Brasilia, DF" />
+              <span>Região administrativa</span>
+              <input id="support-city" type="text" maxlength="32" placeholder="Sua região administrativa" value="Brasília / Plano Piloto" />
             </label>
             <label>
               <span>Foto para perfil</span>
@@ -177,14 +183,14 @@
               </label>
               <label class="format-option">
                 <input type="radio" name="support-story-model" value="3" />
-                <span>Movimento</span>
+                <span>Presença</span>
               </label>
             </fieldset>
             <fieldset class="model-group is-hidden" data-format-models="profile">
               <legend>Modelos de Perfil</legend>
               <label class="format-option">
                 <input type="radio" name="support-profile-model" value="1" checked />
-                <span>Classico</span>
+                <span>Força</span>
               </label>
               <label class="format-option">
                 <input type="radio" name="support-profile-model" value="2" />
@@ -192,7 +198,7 @@
               </label>
               <label class="format-option">
                 <input type="radio" name="support-profile-model" value="3" />
-                <span>Presenca</span>
+                <span>Presença</span>
               </label>
             </fieldset>
             <button class="button primary" id="download-support-card" type="button">Baixar imagem PNG</button>
@@ -200,7 +206,7 @@
           </form>
 
           <div class="support-card-preview" aria-label="Previa do card de apoio">
-            <canvas id="support-card" width="1080" height="1350"></canvas>
+            <canvas id="support-card" width="1080" height="1920"></canvas>
           </div>
         </div>
       </section>
@@ -238,7 +244,7 @@
         </div>
       </section>
 
-      <section class="movement" id="movimento">
+      <section class="movement" id="uniao">
         <div class="movement-copy" data-reveal>
           <p class="section-label">Uma liderança que une</p>
           <h2>O Brasil não precisa de mais divisão. Precisa de equilíbrio.</h2>
@@ -249,7 +255,7 @@
           </p>
         </div>
         <div class="movement-stage" data-reveal>
-          <img src="pessoas.png" alt="Jovens participando do movimento de pré-campanha" />
+          <img src="pessoas.png" alt="Jovens participando da pré-campanha" />
           <div class="signal-card signal-a">diálogo</div>
           <div class="signal-card signal-b">família</div>
           <div class="signal-card signal-c">respeito</div>
